@@ -34,7 +34,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # Using React for frontend developement
-gem 'react-rails'
+gem 'react-rails', '~> 1.5'
 
 # Using Bootstrap 2.3.2
 gem 'twitter-bootstrap-rails', '~> 2.2.8'

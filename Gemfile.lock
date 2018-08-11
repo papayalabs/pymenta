@@ -82,7 +82,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
-    connection_pool (2.2.1)
+    connection_pool (2.2.2)
     countries (2.1.4)
       i18n_data (~> 0.8.0)
       money (~> 6.9)
@@ -233,7 +233,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    react-rails (2.4.4)
+    react-rails (1.11.0)
       babel-transpiler (>= 0.7.0)
       connection_pool
       execjs
@@ -343,7 +343,7 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (~> 5.0.2)
   rails_12factor
-  react-rails
+  react-rails (~> 1.5)
   remotipart (~> 1.3.1)
   rolify
   sass-rails (~> 5.0)
