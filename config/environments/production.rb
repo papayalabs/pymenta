@@ -93,8 +93,7 @@ Rails.application.configure do
     :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'],
     :path => '/:class/:attachment/:id/:style_:basename.:extension',
     :url => ":s3_domain_url",
-    :s3_host_name => "s3.amazonaws.com",
-    :s3_region => "us-east-1"
+    :s3_host_name => "s3.amazonaws.com"
     }
   }
   
