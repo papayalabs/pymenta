@@ -80,7 +80,7 @@ Rails.application.routes.draw do
     get '/:locale/payments_documents/add_payments_document_id' => 'payments_documents#add_payments_document_id', :as => :add_payments_document_id  
     get '/:locale/payments_documents/remove_payments_document_id' => 'payments_documents#remove_payments_document_id', :as => :remove_payments_document_id  
     post '/:locale/payments_documents/create_payment_line' => 'payments_documents#create_payment_line', :as => :create_payment_line
-#    get '/:locale/payments_documents/new' => 'payments_documents#new', :as => :new
+    post '/:locale/payments_documents/new' => 'payments_documents#new'
     get '/:locale/payments_documents/new_modal' => 'payments_documents#new_modal', :as => :new_modal
     get '/:locale/payments_documents/create_payments_document_account' => 'payments_documents#create_payments_document_account', :as => :create_payments_document_account   
 
