@@ -77,11 +77,13 @@ class DocumentReport < PdfReport
     grid(6,0).bounding_box do
       text "SUB-TOTAL", :align => :right, :style => :bold, :size => 18 
       text "IVA " + " " + @document.tax.to_s + " % ", :align => :right, :style => :bold, :size => 18
+      text "RETENCIÓN" + " " + @document.retention.to_s + " % ", :align => :right, :style => :bold, :size => 18 if @document.retention != 0
       text "TOTAL", :align => :right, :style => :bold, :size => 18 
     end
     grid(6,1).bounding_box do
       text format_currency(@document.sub_total).to_s, :align => :right, :size => 18
       text format_currency(@document.tax_total).to_s, :align => :right, :size => 18
+      text format_currency(@document.retention_total).to_s, :align => :right, :size => 18 if @document.retention != 0
       text format_currency(@document.total).to_s, :align => :right, :size => 18
     end
   end      

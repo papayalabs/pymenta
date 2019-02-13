@@ -45,6 +45,7 @@
       due: "Condiciones de Pago"
       total: "Total"
       tax: "IVA"
+      retention: "Retención"
       sub_total: "Sub Total"
       retention_total: "IVA Retenido"
       payment_total: "Total a Pagar"	
@@ -202,6 +203,7 @@
         due: "Condiciones de Pago"
         sub_total: "Sub Total"
         tax: "IVA"
+        retention: "Retención"
       payments_document:
         date: "Fecha"
         number: "Nº de Comprobante"

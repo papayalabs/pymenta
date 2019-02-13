@@ -67,6 +67,10 @@
       <dt><strong><%=t '.tax', :default =>  t("helpers.labels.tax") %></strong></dt>
       <dd><%= @document.tax %></dd>  
     </dl>
+    <dl class="dl-horizontal">
+      <dt><strong><%=t '.retention', :default =>  t("helpers.labels.retention") %></strong></dt>
+      <dd><%= @document.retention %></dd>  
+    </dl>
    </div>
 </div>
 <div id="document_lines">
@@ -118,6 +122,10 @@
     <dl class="dl-horizontal">
       <dt><h4><strong><%=t '.tax', :default =>  t("helpers.labels.tax") %><%= number_to_currency(@document.tax, unit: "", separator: current_user.company.separator , delimiter: current_user.company.delimiter, format: "%u %n") %> % </strong></h4></dt>
       <dd><h4><%= number_to_currency(@document.tax_total, unit: current_user.company.unit, separator: current_user.company.separator , delimiter: current_user.company.delimiter, format: "%u %n") %></h4></dd>  
+    </dl>
+    <dl class="dl-horizontal">
+      <dt><h4><strong><%=t '.retention', :default =>  t("helpers.labels.retention") %><%= number_to_currency(@document.retention, unit: "", separator: current_user.company.separator , delimiter: current_user.company.delimiter, format: "%u %n") %> % </strong></h4></dt>
+      <dd><h4><%= number_to_currency(@document.retention_total, unit: current_user.company.unit, separator: current_user.company.separator , delimiter: current_user.company.delimiter, format: "%u %n") %></h4></dd>  
     </dl>
       <dl class="dl-horizontal">
         <dt><h3><%=t '.total', :default =>  t("helpers.labels.total") %></h3></dt>

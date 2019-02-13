@@ -45,6 +45,7 @@ en:
       due: "Due"
       total: "Total"
       tax: "Tax"
+      retention: "Retention"
       sub_total: "Sub Total"
       retention_total: "Retention Total"
       payment_total: "Payment Total"	
@@ -203,6 +204,7 @@ en:
         due: "Due"
         sub_total: "Sub Total"
         tax: "Tax"
+        retention: "Retention"
       payments_document:
         number: "Number"
         date: "Date"

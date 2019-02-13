@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314023034) do
+ActiveRecord::Schema.define(version: 20190213093216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -195,8 +195,10 @@ ActiveRecord::Schema.define(version: 20170314023034) do
     t.string   "account_id"
     t.string   "warehouse_id"
     t.string   "payments_document_id"
-    t.datetime "created_at",                                               null: false
-    t.datetime "updated_at",                                               null: false
+    t.datetime "created_at",                                                               null: false
+    t.datetime "updated_at",                                                               null: false
+    t.decimal  "retention",                       precision: 10, scale: 2, default: "0.0"
+    t.decimal  "retention_total",                 precision: 10, scale: 2, default: "0.0"
   end
 
   create_table "payment_types", id: false, force: :cascade do |t|
@@ -272,6 +274,21 @@ ActiveRecord::Schema.define(version: 20170314023034) do
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
     t.index ["name"], name: "index_roles_on_name", using: :btree
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id", using: :btree
+  end
+
+  create_table "sensors", force: :cascade do |t|
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "poll_date"
+    t.integer  "sensor_id"
+    t.string   "major_alarm"
+    t.string   "inverter_status"
+    t.string   "input_voltage"
+    t.string   "day_id"
+    t.string   "poll_cycle_num"
+    t.string   "coordinates"
+    t.string   "present_sensor_status"
+    t.string   "present_sensor_voltage_health"
   end
 
   create_table "service_payments", id: false, force: :cascade do |t|

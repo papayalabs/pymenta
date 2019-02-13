@@ -241,6 +241,6 @@ class DocumentsController < ApplicationController
      # Never trust parameters from the scary internet, only allow the white list through.
      def document_params
        params.require(:document).permit(:code, :date, :discount_percentage, :discount_total, :document_number, :domain, :due, :expire_date, :id, :month, :paid, :paid_left,
-   :status, :sub_total, :tax, :tax_total, :total, :type, :username, :version, :year, :account_id, :warehouse_id, :document_type_id, :details, :control_number)
+   :status, :sub_total, :tax, :tax_total, :total, :type, :username, :version, :year, :account_id, :warehouse_id, :document_type_id, :details, :control_number, :retention, :retention_total)
      end
 end

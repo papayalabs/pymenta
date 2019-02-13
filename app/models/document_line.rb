@@ -29,16 +29,18 @@ class DocumentLine < ApplicationRecord
     code = product.code
     document.sub_total = document.sub_total + total
     document.tax_total = document.tax_total + (total*document.tax/100)
-    document.total = document.sub_total + document.tax_total
-    document.paid_left = document.paid_left + total + (total*document.tax/100)
+    document.retention_total = document.retention_total + (total*document.retention/100)
+    document.total = document.sub_total + document.tax_total - document.retention_total
+    document.paid_left = document.paid_left + total + (total*document.tax/100) + (total*document.retention/100)
     document.save
   end
 
   def substract_totals
     document.sub_total = document.sub_total - total
     document.tax_total = document.tax_total - (total*document.tax/100)
+    document.retention_total = document.retention_total - (total*document.retention/100)
     document.total = document.sub_total + document.tax_total
-    document.paid_left = document.paid_left - total - (total*document.tax/100)
+    document.paid_left = document.paid_left - total - (total*document.tax/100) - (total*document.retention/100)
     document.save
   end
   
