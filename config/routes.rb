@@ -82,7 +82,7 @@ Rails.application.routes.draw do
     post '/:locale/payments_documents/create_payment_line' => 'payments_documents#create_payment_line', :as => :create_payment_line
     post '/:locale/payments_documents/new' => 'payments_documents#new'
     get '/:locale/payments_documents/new_modal' => 'payments_documents#new_modal', :as => :new_modal
-    get '/:locale/payments_documents/create_payments_document_account' => 'payments_documents#create_payments_document_account', :as => :create_payments_document_account   
+    post '/:locale/payments_documents/create_payments_document_account' => 'payments_documents#create_payments_document_account', :as => :create_payments_document_account   
 
     get '/:locale/learn' => 'learn#index', :as => :learn_personalize_report
     get '/:locale/privacy' => 'privacy#index', :as => :privacy
