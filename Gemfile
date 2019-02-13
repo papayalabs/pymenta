@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.2'
+ruby '2.3.4'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -59,7 +59,7 @@ gem 'paperclip', '~> 5.2.0'
 gem 'paperclip-dropbox'
 
 # Using ActiveAdmin as administratin framework for administration users
-gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
+gem 'activeadmin', '~> 1.0.0.pre2'
 #gem 'kaminari'
 
 # Using Figaro for simple, Heroku-friendly Rails app configuration using ENV and a single YAML file
