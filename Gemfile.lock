@@ -315,7 +315,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin (~> 1.0.0.pre2)
-  aws-sdk (< 2.0)
+  aws-sdk (< 2.3.0)
   bootstrap-sass (~> 2.3.2.0)
   bootstrap-select-rails
   bootswatch-rails
