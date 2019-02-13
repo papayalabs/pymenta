@@ -116,4 +116,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #AWS
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
