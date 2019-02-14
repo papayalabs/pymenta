@@ -12,9 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20190213093216) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "accounts", id: false, force: :cascade do |t|
     t.string   "id",           limit: 36
     t.string   "version"
@@ -24,8 +21,8 @@ ActiveRecord::Schema.define(version: 20190213093216) do
     t.string   "name"
     t.string   "type"
     t.boolean  "debit_credit"
-    t.decimal  "balance",                 precision: 10, scale: 2
-    t.decimal  "balance_b",               precision: 10, scale: 2
+    t.decimal  "balance",                 precision: 10, scale: 2, default: "0.0"
+    t.decimal  "balance_b",               precision: 10, scale: 2, default: "0.0"
     t.string   "id_number1"
     t.string   "id_number2"
     t.string   "address"
@@ -39,8 +36,8 @@ ActiveRecord::Schema.define(version: 20190213093216) do
     t.string   "web"
     t.string   "contact"
     t.string   "observations"
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
   end
 
   create_table "active_admin_comments", force: :cascade do |t|
@@ -52,9 +49,9 @@ ActiveRecord::Schema.define(version: 20190213093216) do
     t.integer  "author_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
-    t.index ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
-    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
 
   create_table "admin_users", id: false, force: :cascade do |t|
@@ -71,8 +68,8 @@ ActiveRecord::Schema.define(version: 20190213093216) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
-    t.index ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["email"], name: "index_admin_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
   create_table "brands", id: false, force: :cascade do |t|
@@ -141,18 +138,18 @@ ActiveRecord::Schema.define(version: 20190213093216) do
     t.string   "type"
     t.string   "description"
     t.date     "date"
-    t.decimal  "in_quantity",                precision: 10, scale: 2
-    t.decimal  "out_quantity",               precision: 10, scale: 2
-    t.decimal  "price",                      precision: 10, scale: 2
-    t.decimal  "total",                      precision: 10, scale: 2
+    t.decimal  "in_quantity",                precision: 10, scale: 2, default: "0.0"
+    t.decimal  "out_quantity",               precision: 10, scale: 2, default: "0.0"
+    t.decimal  "price",                      precision: 10, scale: 2, default: "0.0"
+    t.decimal  "total",                      precision: 10, scale: 2, default: "0.0"
     t.integer  "year"
     t.integer  "month"
     t.string   "header_id"
     t.string   "product_id"
     t.string   "warehouse_id"
     t.string   "stock_id"
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
+    t.datetime "created_at",                                                          null: false
+    t.datetime "updated_at",                                                          null: false
   end
 
   create_table "document_types", id: false, force: :cascade do |t|
@@ -181,14 +178,14 @@ ActiveRecord::Schema.define(version: 20190213093216) do
     t.string   "details"
     t.date     "date"
     t.date     "expire_date"
-    t.decimal  "discount_percentage",             precision: 10, scale: 2
-    t.decimal  "discount_total",                  precision: 10, scale: 2
-    t.decimal  "sub_total",                       precision: 10, scale: 2
-    t.decimal  "tax",                             precision: 10, scale: 2
-    t.decimal  "tax_total",                       precision: 10, scale: 2
-    t.decimal  "total",                           precision: 10, scale: 2
-    t.decimal  "paid_left",                       precision: 10, scale: 2
-    t.decimal  "paid",                            precision: 10, scale: 2
+    t.decimal  "discount_percentage",             precision: 10, scale: 2, default: "0.0"
+    t.decimal  "discount_total",                  precision: 10, scale: 2, default: "0.0"
+    t.decimal  "sub_total",                       precision: 10, scale: 2, default: "0.0"
+    t.decimal  "tax",                             precision: 10, scale: 2, default: "0.0"
+    t.decimal  "tax_total",                       precision: 10, scale: 2, default: "0.0"
+    t.decimal  "total",                           precision: 10, scale: 2, default: "0.0"
+    t.decimal  "paid_left",                       precision: 10, scale: 2, default: "0.0"
+    t.decimal  "paid",                            precision: 10, scale: 2, default: "0.0"
     t.integer  "year"
     t.integer  "month"
     t.string   "document_type_id"
@@ -221,9 +218,9 @@ ActiveRecord::Schema.define(version: 20190213093216) do
     t.string   "payments_document_id"
     t.string   "notes"
     t.date     "date"
-    t.decimal  "amount",                          precision: 10, scale: 2
-    t.datetime "created_at",                                               null: false
-    t.datetime "updated_at",                                               null: false
+    t.decimal  "amount",                          precision: 10, scale: 2, default: "0.0"
+    t.datetime "created_at",                                                               null: false
+    t.datetime "updated_at",                                                               null: false
   end
 
   create_table "payments_documents", id: false, force: :cascade do |t|
@@ -237,15 +234,15 @@ ActiveRecord::Schema.define(version: 20190213093216) do
     t.string   "status"
     t.date     "date"
     t.decimal  "percentage"
-    t.decimal  "total",                       precision: 10, scale: 2
-    t.decimal  "paid",                        precision: 10, scale: 2
-    t.decimal  "paid_left",                   precision: 10, scale: 2
+    t.decimal  "total",                       precision: 10, scale: 2, default: "0.0"
+    t.decimal  "paid",                        precision: 10, scale: 2, default: "0.0"
+    t.decimal  "paid_left",                   precision: 10, scale: 2, default: "0.0"
     t.integer  "year"
     t.integer  "month"
     t.string   "document_type_id"
     t.string   "account_id"
-    t.datetime "created_at",                                           null: false
-    t.datetime "updated_at",                                           null: false
+    t.datetime "created_at",                                                           null: false
+    t.datetime "updated_at",                                                           null: false
   end
 
   create_table "products", id: false, force: :cascade do |t|
@@ -259,10 +256,10 @@ ActiveRecord::Schema.define(version: 20190213093216) do
     t.string   "barcode"
     t.string   "brand_id"
     t.string   "category_id"
-    t.decimal  "cost",                   precision: 10, scale: 2
-    t.decimal  "price",                  precision: 10, scale: 2
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.decimal  "cost",                   precision: 10, scale: 2, default: "0.0"
+    t.decimal  "price",                  precision: 10, scale: 2, default: "0.0"
+    t.datetime "created_at",                                                      null: false
+    t.datetime "updated_at",                                                      null: false
   end
 
   create_table "roles", force: :cascade do |t|
@@ -271,24 +268,9 @@ ActiveRecord::Schema.define(version: 20190213093216) do
     t.integer  "resource_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
-    t.index ["name"], name: "index_roles_on_name", using: :btree
-    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id", using: :btree
-  end
-
-  create_table "sensors", force: :cascade do |t|
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.string   "poll_date"
-    t.integer  "sensor_id"
-    t.string   "major_alarm"
-    t.string   "inverter_status"
-    t.string   "input_voltage"
-    t.string   "day_id"
-    t.string   "poll_cycle_num"
-    t.string   "coordinates"
-    t.string   "present_sensor_status"
-    t.string   "present_sensor_voltage_health"
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["name"], name: "index_roles_on_name"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
   create_table "service_payments", id: false, force: :cascade do |t|
@@ -336,14 +318,14 @@ ActiveRecord::Schema.define(version: 20190213093216) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   create_table "users_roles", id: false, force: :cascade do |t|
     t.string  "user_id"
     t.integer "role_id"
-    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
+    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
   end
 
 end

@@ -10,10 +10,10 @@ class CreateDocumentLines < ActiveRecord::Migration[5.0]
       t.string :type
       t.string :description
       t.date :date
-      t.decimal :in_quantity, :precision => 10, :scale => 2
-      t.decimal :out_quantity, :precision => 10, :scale => 2
-      t.decimal :price, :precision => 10, :scale => 2
-      t.decimal :total, :precision => 10, :scale => 2
+      t.decimal :in_quantity, :precision => 10, :scale => 2, default: 0
+      t.decimal :out_quantity, :precision => 10, :scale => 2, default: 0
+      t.decimal :price, :precision => 10, :scale => 2, default: 0
+      t.decimal :total, :precision => 10, :scale => 2, default: 0
       t.integer :year
       t.integer :month
       

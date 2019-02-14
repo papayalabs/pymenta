@@ -15,14 +15,14 @@ class CreateDocuments < ActiveRecord::Migration[5.0]
       t.date :date
       t.date :expire_date
 
-      t.decimal :discount_percentage, :precision => 10, :scale => 2
-      t.decimal :discount_total, :precision => 10, :scale => 2
-      t.decimal :sub_total, :precision => 10, :scale => 2
-      t.decimal :tax, :precision => 10, :scale => 2
-      t.decimal :tax_total, :precision => 10, :scale => 2
-      t.decimal :total, :precision => 10, :scale => 2
-      t.decimal :paid_left, :precision => 10, :scale => 2
-      t.decimal :paid, :precision => 10, :scale => 2
+      t.decimal :discount_percentage, :precision => 10, :scale => 2, default: 0
+      t.decimal :discount_total, :precision => 10, :scale => 2, default: 0
+      t.decimal :sub_total, :precision => 10, :scale => 2, default: 0
+      t.decimal :tax, :precision => 10, :scale => 2, default: 0
+      t.decimal :tax_total, :precision => 10, :scale => 2, default: 0
+      t.decimal :total, :precision => 10, :scale => 2, default: 0
+      t.decimal :paid_left, :precision => 10, :scale => 2, default: 0
+      t.decimal :paid, :precision => 10, :scale => 2, default: 0
 
       t.integer :year
       t.integer :month

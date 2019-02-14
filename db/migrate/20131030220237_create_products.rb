@@ -11,8 +11,8 @@ class CreateProducts < ActiveRecord::Migration[5.0]
       t.string :barcode
       t.string :brand_id
       t.string :category_id
-      t.decimal :cost, :precision => 10, :scale => 2
-      t.decimal :price, :precision => 10, :scale => 2
+      t.decimal :cost, :precision => 10, :scale => 2, default: 0
+      t.decimal :price, :precision => 10, :scale => 2, default: 0
 
       t.timestamps
     end

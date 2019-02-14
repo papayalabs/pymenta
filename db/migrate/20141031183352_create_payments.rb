@@ -9,7 +9,7 @@ class CreatePayments < ActiveRecord::Migration[5.0]
       t.string :payments_document_id
       t.string :notes
       t.date :date
-      t.decimal :amount, :precision => 10, :scale => 2
+      t.decimal :amount, :precision => 10, :scale => 2, default: 0
 
       t.timestamps
     end
