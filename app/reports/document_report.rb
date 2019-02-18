@@ -118,7 +118,7 @@ class DocumentReport < PdfReport
       text format_currency(@document.sub_total).to_s + " " + @user.company.unit, :align => :right, :style => :bold, :size => 12
       stroke_horizontal_rule
       move_down 5
-      text_box "IVA " + "( " + @document.tax.to_s + " % )", :align => :left, :size => 12, :at => [0, y - 30]
+      text_box "IVA " + "( " + @document.tax.to_s + " % )", :align => :left, :size => 12, :at => [0, y - 30] if @document.tax != 0
       text format_currency(@document.tax_total).to_s + " " + @user.company.unit, :align => :right, :style => :bold,:size => 12 if @document.tax != 0
       stroke_horizontal_rule
       move_down 5
