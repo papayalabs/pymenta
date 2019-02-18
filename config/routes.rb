@@ -50,48 +50,48 @@ Rails.application.routes.draw do
 
     devise_for :users, :controllers => { :registrations => "registrations"}
     
-    get '/:locale/documents/search' => 'documents#search', :as => :documents_search
-    get '/:locale/stocks/search' => 'stocks#search', :as => :stock_search
-    get '/:locale/clients/search' => 'clients#search', :as => :client_search
-    get '/:locale/providers/search' => 'providers#search', :as => :provider_search
-    get '/:locale/products/search' => 'products#search', :as => :products_search
-    get '/:locale/payments_documents/search' => 'payments_documents#search', :as => :payments_documents_search
+    get '/documents/search' => 'documents#search', :as => :documents_search
+    get '/stocks/search' => 'stocks#search', :as => :stock_search
+    get '/clients/search' => 'clients#search', :as => :client_search
+    get '/providers/search' => 'providers#search', :as => :provider_search
+    get '/products/search' => 'products#search', :as => :products_search
+    get '/payments_documents/search' => 'payments_documents#search', :as => :payments_documents_search
 
-    get '/:locale/companies/settings' => 'companies#settings', :as => :settings
-    get '/:locale/companies/edit_formats' => 'companies#edit_formats', :as => :edit_formats     
+    get '/companies/settings' => 'companies#settings', :as => :settings
+    get '/companies/edit_formats' => 'companies#edit_formats', :as => :edit_formats     
  
-    get '/:locale/clients/autocomplete' => 'clients#autocomplete', :as => :client_autocomplete
-    get '/:locale/clients/get_info_account' => 'clients#get_info_from_selected_account', :as => :get_info_client
+    get '/clients/autocomplete' => 'clients#autocomplete', :as => :client_autocomplete
+    get '/clients/get_info_account' => 'clients#get_info_from_selected_account', :as => :get_info_client
 
-    get '/:locale/providers/autocomplete' => 'providers#autocomplete', :as => :provider_autocomplete
-    get '/:locale/providers/get_info_account' => 'providers#get_info_from_selected_account', :as => :get_info_provider
+    get '/providers/autocomplete' => 'providers#autocomplete', :as => :provider_autocomplete
+    get '/providers/get_info_account' => 'providers#get_info_from_selected_account', :as => :get_info_provider
 
-    get '/:locale/warehouses/autocomplete' => 'warehouses#autocomplete', :as => :warehouse_autocomplete
-    get '/:locale/warehouses/get_info_account' => 'warehouses#get_info_from_selected_account', :as => :get_info_warehouse   
+    get '/warehouses/autocomplete' => 'warehouses#autocomplete', :as => :warehouse_autocomplete
+    get '/warehouses/get_info_account' => 'warehouses#get_info_from_selected_account', :as => :get_info_warehouse   
 
-    delete '/:locale/documents/remove_document_line' => 'documents#remove_document_line', :as => :document_remove_document_line
-    post '/:locale/documents/create_document_line' => 'documents#create_document_line', :as => :create_document_line
-    get '/:locale/documents/create_document_account' => 'documents#create_document_account', :as => :create_document_account  
-    get '/:locale/documents/new' => 'documents#new', :as => :new
+    delete '/documents/remove_document_line' => 'documents#remove_document_line', :as => :document_remove_document_line
+    post '/documents/create_document_line' => 'documents#create_document_line', :as => :create_document_line
+    get '/documents/create_document_account' => 'documents#create_document_account', :as => :create_document_account  
+    get '/documents/new' => 'documents#new', :as => :new
 
-    get '/:locale/products/autocomplete' => 'products#autocomplete', :as => :product_autocomplete
-    get '/:locale/products/get_info_product' => 'products#get_info_from_selected_product', :as => :get_info_product
+    get '/products/autocomplete' => 'products#autocomplete', :as => :product_autocomplete
+    get '/products/get_info_product' => 'products#get_info_from_selected_product', :as => :get_info_product
 
-    get '/:locale/payments_documents/add_payments_document_id' => 'payments_documents#add_payments_document_id', :as => :add_payments_document_id  
-    get '/:locale/payments_documents/remove_payments_document_id' => 'payments_documents#remove_payments_document_id', :as => :remove_payments_document_id  
-    post '/:locale/payments_documents/create_payment_line' => 'payments_documents#create_payment_line', :as => :create_payment_line
-    post '/:locale/payments_documents/new' => 'payments_documents#new'
-    get '/:locale/payments_documents/new_modal' => 'payments_documents#new_modal', :as => :new_modal
-    post '/:locale/payments_documents/create_payments_document_account' => 'payments_documents#create_payments_document_account', :as => :create_payments_document_account   
+    get '/payments_documents/add_payments_document_id' => 'payments_documents#add_payments_document_id', :as => :add_payments_document_id  
+    get '/payments_documents/remove_payments_document_id' => 'payments_documents#remove_payments_document_id', :as => :remove_payments_document_id  
+    post '/payments_documents/create_payment_line' => 'payments_documents#create_payment_line', :as => :create_payment_line
+    post '/payments_documents/new' => 'payments_documents#new'
+    get '/payments_documents/new_modal' => 'payments_documents#new_modal', :as => :new_modal
+    post '/payments_documents/create_payments_document_account' => 'payments_documents#create_payments_document_account', :as => :create_payments_document_account   
 
-    get '/:locale/learn' => 'learn#index', :as => :learn_personalize_report
-    get '/:locale/privacy' => 'privacy#index', :as => :privacy
-    get '/:locale/terms' => 'terms#index', :as => :terms 
+    get '/learn' => 'learn#index', :as => :learn_personalize_report
+    get '/privacy' => 'privacy#index', :as => :privacy
+    get '/terms' => 'terms#index', :as => :terms 
 
     patch '/upload_logo' => 'companies#upload_logo', :as => :upload_logo
     get '/delete_logo' => 'companies#delete_logo', :as => :delete_logo
     
-    get '/:locale/service_payments/subscribe_month' => 'service_payments#subscribe_month', :as => :subscribe_month 
-    get '/:locale/service_payments/subscribe_year' => 'service_payments#subscribe_year', :as => :subscribe_year
+    get '/service_payments/subscribe_month' => 'service_payments#subscribe_month', :as => :subscribe_month 
+    get '/service_payments/subscribe_year' => 'service_payments#subscribe_year', :as => :subscribe_year
   end
 end

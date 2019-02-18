@@ -30,7 +30,7 @@ class Document < ApplicationRecord
       end
     end
   end
-
+  
   private
     def ensure_counter_is_not_greater_than_limit
       if self.company.counter >= self.company.limit

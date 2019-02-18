@@ -228,7 +228,7 @@ class DocumentsController < ApplicationController
    def personalize_report
       user = current_user
       @document = Document.find(params[:format])
-      pdf = Object.const_get("Report"+@document.document_type_id.to_s).new(@document, user)
+      pdf = Object.const_get("Report"+@document.document_type_id.to_s.tr('-', '')).new(@document, user)
       send_data pdf.render, filename:'personalize_report.pdf',type: 'application/pdf', disposition: 'inline'
    end 
    

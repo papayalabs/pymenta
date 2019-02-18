@@ -47,8 +47,10 @@ module ApplicationHelper
 
    def has_personalize_report(document)
      begin
+       puts 'Report name'
+       puts "Report"+document.document_type_id.to_s.tr('-', '')
        user = current_user 
-       pdf = Object.const_get("Report"+document.document_type_id.to_s).new(document,user)
+       pdf = Object.const_get("Report"+document.document_type_id.to_s.tr('-', '')).new(document,user)
      rescue Exception => e
       puts "Object not found"
       puts e

@@ -3,7 +3,7 @@ require 'open-uri'
 
 class DocumentsReport < PdfReport
   include ActionView::Helpers::NumberHelper
-  TABLE_WIDTHS = [60, 100, 100, 200, 80, 80, 50, 80, 100]
+  TABLE_WIDTHS = [50, 70, 70, 190, 80, 80, 40, 80, 40, 80, 80]
   PAGE_MARGIN = [40, 40, 40, 40]
   RAILS_ROOT = Rails.root
 
@@ -13,8 +13,12 @@ class DocumentsReport < PdfReport
     @user = user
     logo
     move_down 40
-    text 'Listado de Facturas desde ' + start_at.strftime('%d/%m/%Y') + ' hasta ' + end_at.strftime('%d/%m/%Y'),:size => 24, :style => :bold
-    move_down 40
+    if I18n.locale == :es
+      text 'Listado de Documentos desde ' + start_at.strftime(user.company.date_format) + ' hasta ' + end_at.strftime(user.company.date_format),:size => 24, :style => :bold
+    elsif I18n.locale == :en
+      text 'List of Documents from ' + start_at.strftime(user.company.date_format) + ' to ' + end_at.strftime(user.company.date_format),:size => 24, :style => :bold
+    end
+      move_down 40
     display_header_table
     display_invoice_table
     display_total_table
@@ -39,8 +43,13 @@ class DocumentsReport < PdfReport
   end
 
   def display_header_table
-      data = [['Fecha de la Factura', 'Nro. de Factura', 'Nro. de RIF','Nombre','Total con IVA', 'Base Imponible', '% Alicuota', 'Impuesto IVA', 'Estado']]
+    if I18n.locale == :es
+      data = [['Fecha', 'Nro.', @user.company.id_number1_label,'Nombre','Total con IVA', 'Sub Total', '% IVA', 'Total IVA','% Retención','Total Retención','Estado']]
+    elsif I18n.locale == :en
+      data = [['Date', 'Nro.', @user.company.id_number1_label,'Name','Total with Tax', 'Sub Total', '% Tax', 'Total Tax','% Retention','Total Retention','Status']]
+    end
       table(data, :row_colors => ["F0F0F0"],column_widths: TABLE_WIDTHS, :cell_style => { size: 10 } )
+
   end
 
   def display_invoice_table
@@ -49,11 +58,11 @@ class DocumentsReport < PdfReport
     else
       table(table_data,column_widths: TABLE_WIDTHS, :cell_style => { size: 10 } ) do
         cells.style do |c|
-          if c.content == "NO PAGADO"
+          if c.content == "NO PAGADO" || c.content == "NOT PAID"
             c.background_color = 'b42121'
-          elsif c.content == "PAGADO PARCIAL"
+          elsif c.content == "PAGADO PARCIAL" || c.content == "PARTIAL PAID"
             c.background_color = 'ffad32'
-          elsif c.content == "PAGADO"
+          elsif c.content == "PAGADO" || c.content == "PAID"
             c.background_color = '2f960b'
           end              
         end
@@ -62,11 +71,11 @@ class DocumentsReport < PdfReport
   end
 
   def table_data
-    @table_data ||= @invoices.map { |e| [e.date.strftime('%d/%m/%Y'), e.document_number, e.account.id_number1, e.account.name, format_currency(e.total), format_currency(e.sub_total), e.tax, format_currency(e.tax_total), status_name(e)] }
+    @table_data ||= @invoices.map { |e| [e.date.strftime('%d/%m/%Y'), e.document_number, e.account.id_number1, e.account.name, format_currency(e.total), format_currency(e.sub_total), e.tax, format_currency(e.tax_total), e.retention, format_currency(e.retention_total),status_name(e)] }
   end
 
   def display_total_table
-      data = [['', '', '', 'TOTALES', format_currency(@invoices.sum("total")), format_currency(@invoices.sum("sub_total")), '', format_currency(@invoices.sum("tax_total")),'']]
+      data = [['', '', '', 'TOTAL', format_currency(@invoices.sum("total")), format_currency(@invoices.sum("sub_total")), '', format_currency(@invoices.sum("tax_total")),'',format_currency(@invoices.sum("retention_total")),'']]
       table(data, :row_colors => ["F0F0F0"],column_widths: TABLE_WIDTHS, :cell_style => { size: 10 , :font_style => :bold } )
   end
   
@@ -81,11 +90,11 @@ class DocumentsReport < PdfReport
       value = "NOT_PAID"
     end     
     if value == nil || value == "NOT_PAID"
-      "NO PAGADO"
+      I18n.locale == :es ? "NO PAGADO" : "NOT PAID"
     elsif value == "PARTIAL_PAID"
-      "PAGADO PARCIAL"
+      I18n.locale == :es ? "PAGADO PARCIAL" : "PARTIAL PAID"
     elsif value == "PAID"
-      "PAGADO"
+      I18n.locale == :es ? "PAGADO" : "PAID"
     end
   end        
 end

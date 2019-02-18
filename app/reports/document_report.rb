@@ -12,28 +12,56 @@ class DocumentReport < PdfReport
     #grid.show_all
     logo
     grid(0,1).bounding_box do
-      text document.type + " N# " + document.document_number, :size => 14, :style => :bold
-      text "FECHA " + document.date.strftime('%d/%m/%Y'), :size => 10
-      text "COND DE PAGO " + document.due, :size => 10
+      text document.type, :size => 14, :style => :bold
+      stroke do
+        line_width 3
+        stroke_horizontal_rule
+      end
+      move_down 10
+      text "NUMERO ", :size => 10
+      text document.document_number, :size => 14, :style => :bold
+      stroke do
+        line_width 1
+        stroke_horizontal_rule
+      end
+      move_down 10
+      text "FECHA ", :size => 10
+      text document.date.strftime(@user.company.date_format), :size => 14, :style => :bold
     end 
     company = @user.company
     grid(1,0).bounding_box do
-      text ""
+      stroke do
+        line_width 3
+        stroke_horizontal_rule
+      end
+      move_down 10
       text company.name, :size => 10,:style => :bold
       text company.id_number1, :size => 9
       if company.address != nil
         text company.address.truncate(94,omission: ''), :size => 9
       end
-      text company.city, :size => 9
+      unless company.zip_code.blank?
+        text company.city + ", " + company.zip_code, :size => 9
+      else
+        text company.city, :size => 9
+      end
+      text company.country_name, :size => 9
       text company.telephone, :size => 9
     end
     grid(1,1).bounding_box do
+      stroke_horizontal_rule
+      move_down 10
       text document.account.name, :size => 10, :style => :bold
       text document.account.id_number1, :size => 9
       if document.account.address != nil
         text document.account.address.truncate(94,omission: ''), :size => 9
-	end
-      text document.account.city, :size => 9
+      end
+      unless document.account.zip_code.blank?
+        text document.account.city+ ", " + document.account.zip_code, :size => 9
+      else
+        text document.account.city, :size => 9
+      end
+      text document.account.country_name, :size => 9
       text document.account.telephone, :size => 9
     end  
     move_down 10
@@ -57,8 +85,13 @@ class DocumentReport < PdfReport
   end
 
   def display_header_table
-      data = [%w[COD DESCRIPCION UND CANT PRECIO TOTAL]]
-      table(data, :row_colors => ["F0F0F0"],column_widths: TABLE_WIDTHS)
+      stroke do
+        line_width 3
+        stroke_horizontal_rule
+      end
+      move_down 3
+      data = [%w[Código Descripción Unidad Cantidad Precio Total]]
+      table(data, :row_colors => ["FFFFFF"],column_widths: TABLE_WIDTHS,:cell_style => { :border_width => 0 })
   end
 
   def display_lines_table
@@ -70,21 +103,34 @@ class DocumentReport < PdfReport
   end
 
   def table_data
+    stroke do
+      line_width 1
+      stroke_horizontal_rule
+    end
     @table_data ||= @document.document_lines.map { |e| [e.code, e.description, e.product.units, e.in_quantity + e.out_quantity, format_currency(e.price), format_currency(e.total)] }
   end
 
   def footer
-    grid(6,0).bounding_box do
-      text "SUB-TOTAL", :align => :right, :style => :bold, :size => 18 
-      text "IVA " + " " + @document.tax.to_s + " % ", :align => :right, :style => :bold, :size => 18
-      text "RETENCIÓN" + " " + @document.retention.to_s + " % ", :align => :right, :style => :bold, :size => 18 if @document.retention != 0
-      text "TOTAL", :align => :right, :style => :bold, :size => 18 
-    end
     grid(6,1).bounding_box do
-      text format_currency(@document.sub_total).to_s, :align => :right, :size => 18
-      text format_currency(@document.tax_total).to_s, :align => :right, :size => 18
-      text format_currency(@document.retention_total).to_s, :align => :right, :size => 18 if @document.retention != 0
-      text format_currency(@document.total).to_s, :align => :right, :size => 18
+      stroke_horizontal_rule
+      move_down 5
+      text_box "SUB-TOTAL", :align => :left, :size => 12, :at => [0, y - 30]
+      text format_currency(@document.sub_total).to_s + " " + @user.company.unit, :align => :right, :style => :bold, :size => 12
+      stroke_horizontal_rule
+      move_down 5
+      text_box "IVA " + "( " + @document.tax.to_s + " % )", :align => :left, :size => 12, :at => [0, y - 30]
+      text format_currency(@document.tax_total).to_s + " " + @user.company.unit, :align => :right, :style => :bold,:size => 12 if @document.tax != 0
+      stroke_horizontal_rule
+      move_down 5
+      text_box "RETENCIÓN" + "( " + @document.retention.to_s + " % )", :align => :left, :size => 12, :at => [0, y - 30] if @document.retention != 0
+      text format_currency(@document.retention_total).to_s + " " + @user.company.unit, :style => :bold, :align => :right, :size => 12 if @document.retention != 0
+      stroke do
+        line_width 3
+        stroke_horizontal_rule
+      end
+      move_down 5
+      text_box "TOTAL", :align => :left, :style => :bold, :size => 16, :at => [0, y - 30]
+      text format_currency(@document.total).to_s + " " + @user.company.unit, :align => :right, :style => :bold, :size => 16
     end
   end      
     
