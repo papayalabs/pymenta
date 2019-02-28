@@ -4,6 +4,7 @@
   </div>
   <%= f.input :document_number %>
   <%= f.input :date %>
+  <%= f.input :details %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary', :data => {:disable_with =>  t('.saving', :default => t("helpers.labels.saving"))} %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

@@ -3,7 +3,7 @@ require 'open-uri'
 
 class DocumentsReport < PdfReport
   include ActionView::Helpers::NumberHelper
-  TABLE_WIDTHS = [50, 70, 70, 190, 80, 80, 40, 80, 40, 80, 80]
+  TABLE_WIDTHS = [50, 70, 70, 100, 90, 80, 80, 40, 80, 40, 80, 80]
   PAGE_MARGIN = [40, 40, 40, 40]
   RAILS_ROOT = Rails.root
 
@@ -44,9 +44,9 @@ class DocumentsReport < PdfReport
 
   def display_header_table
     if I18n.locale == :es
-      data = [['Fecha', 'Nro.', @user.company.id_number1_label,'Nombre','Total con IVA', 'Sub Total', '% IVA', 'Total IVA','% Retención','Total Retención','Estado']]
+      data = [['Fecha', 'Nro.', @user.company.id_number1_label,'Nombre','Detalles','Total con IVA', 'Sub Total', '% IVA', 'Total IVA','% Retención','Total Retención','Estado']]
     elsif I18n.locale == :en
-      data = [['Date', 'Nro.', @user.company.id_number1_label,'Name','Total with Tax', 'Sub Total', '% Tax', 'Total Tax','% Retention','Total Retention','Status']]
+      data = [['Date', 'Nro.', @user.company.id_number1_label,'Name','Details','Total with Tax', 'Sub Total', '% Tax', 'Total Tax','% Retention','Total Retention','Status']]
     end
       table(data, :row_colors => ["F0F0F0"],column_widths: TABLE_WIDTHS, :cell_style => { size: 10 } )
 
@@ -71,11 +71,11 @@ class DocumentsReport < PdfReport
   end
 
   def table_data
-    @table_data ||= @invoices.map { |e| [e.date.strftime('%d/%m/%Y'), e.document_number, e.account.id_number1, e.account.name, format_currency(e.total), format_currency(e.sub_total), e.tax, format_currency(e.tax_total), e.retention, format_currency(e.retention_total),status_name(e)] }
+    @table_data ||= @invoices.map { |e| [e.date.strftime('%d/%m/%Y'), e.document_number, e.account.id_number1, e.account.name, e.details, format_currency(e.total), format_currency(e.sub_total), e.tax, format_currency(e.tax_total), e.retention, format_currency(e.retention_total),status_name(e)] }
   end
 
   def display_total_table
-      data = [['', '', '', 'TOTAL', format_currency(@invoices.sum("total")), format_currency(@invoices.sum("sub_total")), '', format_currency(@invoices.sum("tax_total")),'',format_currency(@invoices.sum("retention_total")),'']]
+      data = [['', '', '', '','TOTAL', format_currency(@invoices.sum("total")), format_currency(@invoices.sum("sub_total")), '', format_currency(@invoices.sum("tax_total")),'',format_currency(@invoices.sum("retention_total")),'']]
       table(data, :row_colors => ["F0F0F0"],column_widths: TABLE_WIDTHS, :cell_style => { size: 10 , :font_style => :bold } )
   end
   

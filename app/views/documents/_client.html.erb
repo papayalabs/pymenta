@@ -22,6 +22,10 @@
 	    <dt><strong><%=t '.document_number', :default => t("helpers.labels.document_number") %>:</strong></dt>
 	    <dd><%= f.text_field :document_number %></dd>
 	  </dl>
+		<dl class="dl-horizontal">
+	    <dt><strong><%=t '.details', :default => t("helpers.labels.details") %>:</strong></dt>
+	    <dd><%= f.text_field :details %></dd>
+	  </dl>
 	  <dl class="dl-horizontal">
 	    <dt><strong><%=t '.warehouses', :default => t("helpers.labels.warehouses") %>:</strong></dt>
 	    <dd><%= f.collection_select :warehouse_id, Account.where("domain = ? AND type = ?",current_user.domain,"Warehouse"), :id, :name %></dd>
