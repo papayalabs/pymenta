@@ -16,5 +16,6 @@ module Pymenta
     end
     config.i18n.available_locales = [:es, :en]
     config.react.addons = true
+    config.limit = 15
   end
 end

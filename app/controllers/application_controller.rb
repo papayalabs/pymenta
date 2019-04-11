@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
     @company.initial_cycle = @company.final_cycle
     @company.final_cycle = @company.final_cycle.months_since(1)
     @company.counter = 0
-    @company.limit = 3
+    @company.limit = Rails.application.config.limit
     @company.save
   end
 

@@ -124,7 +124,7 @@ class CompaniesController < ApplicationController
    #     @company.initial_cycle = Time.new
    #     @company.final_cycle = Time.now.months_since(1)
    #     @company.counter = 0
-   #     @company.limit = 3
+   #     @company.limit = Rails.application.config.limit
    #     
    #     respond_to do |format|
    #        if @company.save
