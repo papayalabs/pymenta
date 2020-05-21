@@ -9,7 +9,7 @@ Rails.application.config.assets.precompile += %w( terms_privacy.css )
 Rails.application.config.assets.precompile += %w( privacy.css )
 Rails.application.config.assets.precompile += %w( bootstrap3.min.css )
 Rails.application.config.assets.precompile += %w( bootstrap3.css )
-
+Rails.application.config.assets.precompile += %w( Tour.mp4 )
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 

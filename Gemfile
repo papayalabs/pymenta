@@ -1,23 +1,14 @@
 source 'https://rubygems.org'
 ruby '2.6.3'
+gem 'rails', '~> 5.2.0'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.0.2'
-
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -60,7 +51,7 @@ gem "paperclip", ">= 5.2.0"
 gem 'paperclip-dropbox'
 
 # Using ActiveAdmin as administratin framework for administration users
-gem 'activeadmin', '~> 1.0.0.pre2'
+gem 'activeadmin'
 #gem 'kaminari'
 
 # Using Figaro for simple, Heroku-friendly Rails app configuration using ENV and a single YAML file
@@ -85,6 +76,12 @@ gem 'paypal-sdk-rest', '~> 1.3.3'
 
 # Using Remotipart to use remote =>true in form
 gem 'remotipart', '~> 1.3.1'
+
+group :assets do
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+end
 
 group :production do
   # Use Postgresql for production
@@ -118,3 +115,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #AWS
 gem 'aws-sdk', '< 2.0'
 gem 'aws-sdk-s3'
+
