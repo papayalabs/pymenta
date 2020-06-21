@@ -24,9 +24,9 @@ class ApplicationController < ActionController::Base
       # request.remote_ip
     end
 
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_path, :alert => exception.message
-  end
+  #rescue_from CanCan::AccessDenied do |exception|
+  #  redirect_to root_path, :alert => exception.message
+  #end
 
   def after_sign_in_path_for(resource_or_scope)
     if current_user != nil

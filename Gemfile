@@ -37,7 +37,7 @@ gem 'bootswatch-rails' #This gem is meant to be used with bootstrap-sass. It giv
 
 # Using Device and CanCan for authentication
 gem 'devise'
-gem 'cancan'
+#gem 'cancan'
 
 # Using Simple Form to simplified forms
 gem 'simple_form'
