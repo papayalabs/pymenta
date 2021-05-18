@@ -8,7 +8,7 @@ git_source(:github) do |repo_name|
 end
 
 # Use Puma as the app server
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 4.3'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
