@@ -24,7 +24,7 @@ class RegistrationsController < Devise::RegistrationsController
            @user.domain = @company.id
            if @user.save
            # Notifier.welcome_email(@user).deliver
-             @user.add_role :admin
+             # @user.add_role :admin
              sign_in(resource_name, resource)
              defaults @company,@user   
              flash[:notice] = t("devise.sessions.signed_in")

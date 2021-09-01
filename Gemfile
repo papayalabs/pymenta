@@ -62,7 +62,7 @@ gem "will_paginate", '~> 3.0'
 gem 'will_paginate-bootstrap', '~> 0.2.5'
 
 # Using Rolify as a role managment library
-gem 'rolify'
+gem 'rolify', '~> 3.4'
 
 # Using Coutry Selectas a simple helper to get an HTML select list of countries using the ISO 3166-1 standard.
 gem 'country_select'
@@ -115,4 +115,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #AWS
 gem 'aws-sdk', '< 2.0'
 gem 'aws-sdk-s3'
+gem 'bigdecimal', '1.3.5'
+
 
