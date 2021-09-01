@@ -9,7 +9,7 @@ end
 
 # Use Puma as the app server
 gem "puma", ">= 4.3.8"
-
+gem 'mysql2', '>= 0.3.18', '< 0.5'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
