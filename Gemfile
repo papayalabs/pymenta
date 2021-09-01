@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.6.3'
+ruby '2.7.0'
 gem 'rails', '~> 5.2.0'
 
 git_source(:github) do |repo_name|
@@ -8,7 +8,7 @@ git_source(:github) do |repo_name|
 end
 
 # Use Puma as the app server
-gem 'puma', '~> 3.0'
+gem "puma", ">= 4.3.8"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
