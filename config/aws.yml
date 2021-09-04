@@ -1,7 +1,0 @@
-development:
-  access_key_id: AKIAJNERPOXYWTT2KGVA
-  secret_access_key: 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 
-
-production:
-  access_key_id: AKIAJNERPOXYWTT2KGVA
-  secret_access_key: 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 
