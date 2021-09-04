@@ -9,8 +9,7 @@ class Account < ApplicationRecord
   has_many :documents
   
   def country_name
-    #puts 'Country = '+self.country.to_s
-    #country = ISO3166::Country[self.country]
-    #country.translations[I18n.locale.to_s] || country.name
+    country = ISO3166::Country[self.country]
+    country.translations[I18n.locale.to_s] || country.name
   end
 end

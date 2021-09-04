@@ -18,14 +18,14 @@ class DocumentReport < PdfReport
         stroke_horizontal_rule
       end
       move_down 10
-      text "NUMERO ", :size => 10
+      text "NUMBER # ", :size => 10
       text document.document_number, :size => 14, :style => :bold
       stroke do
         line_width 1
         stroke_horizontal_rule
       end
       move_down 10
-      text "FECHA ", :size => 10
+      text "ISSUE DATE ", :size => 10
       text document.date.strftime(@user.company.date_format), :size => 14, :style => :bold
     end 
     company = @user.company
@@ -36,7 +36,7 @@ class DocumentReport < PdfReport
       end
       move_down 10
       text company.name, :size => 10,:style => :bold
-      text company.id_number1, :size => 9
+      text company.id_number1_label + ': ' + company.id_number1, :size => 9
       if company.address != nil
         text company.address.truncate(94,omission: ''), :size => 9
       end
@@ -52,7 +52,7 @@ class DocumentReport < PdfReport
       stroke_horizontal_rule
       move_down 10
       text document.account.name, :size => 10, :style => :bold
-      text document.account.id_number1, :size => 9
+      text company.id_number1_label + ': ' + document.account.id_number1, :size => 9
       if document.account.address != nil
         text document.account.address.truncate(94,omission: ''), :size => 9
       end
@@ -90,7 +90,7 @@ class DocumentReport < PdfReport
         stroke_horizontal_rule
       end
       move_down 3
-      data = [%w[Código Descripción Unidad Cantidad Precio Total]]
+      data = [%w[Code Description Quantity Unit Price Total]]
       table(data, :row_colors => ["FFFFFF"],column_widths: TABLE_WIDTHS,:cell_style => { :border_width => 0 })
   end
 
@@ -107,7 +107,7 @@ class DocumentReport < PdfReport
       line_width 1
       stroke_horizontal_rule
     end
-    @table_data ||= @document.document_lines.map { |e| [e.code, e.description, e.product.units, e.in_quantity + e.out_quantity, format_currency(e.price), format_currency(e.total)] }
+    @table_data ||= @document.document_lines.map { |e| [e.code, e.description, e.in_quantity + e.out_quantity, e.product.units, format_currency(e.price), format_currency(e.total)] }
   end
 
   def footer
@@ -118,11 +118,11 @@ class DocumentReport < PdfReport
       text format_currency(@document.sub_total).to_s + " " + @user.company.unit, :align => :right, :style => :bold, :size => 12
       stroke_horizontal_rule if @document.tax != 0
       move_down 5 if @document.tax != 0
-      text_box "IVA " + "( " + @document.tax.to_s + " % )", :align => :left, :size => 12, :at => [0, y - 30] if @document.tax != 0
+      text_box "VAT " + "( " + @document.tax.to_s + " % )", :align => :left, :size => 12, :at => [0, y - 30] if @document.tax != 0
       text format_currency(@document.tax_total).to_s + " " + @user.company.unit, :align => :right, :style => :bold,:size => 12 if @document.tax != 0
       stroke_horizontal_rule if @document.retention != 0
       move_down 5 if @document.retention != 0
-      text_box "RETENCIÓN" + "( " + @document.retention.to_s + " % )", :align => :left, :size => 12, :at => [0, y - 30] if @document.retention != 0
+      text_box "RETENTION" + "( " + @document.retention.to_s + " % )", :align => :left, :size => 12, :at => [0, y - 30] if @document.retention != 0
       text format_currency(@document.retention_total).to_s + " " + @user.company.unit, :style => :bold, :align => :right, :size => 12 if @document.retention != 0
       stroke do
         line_width 3
