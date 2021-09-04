@@ -12,21 +12,27 @@ class DocumentReport < PdfReport
     #grid.show_all
     logo
     grid(0,1).bounding_box do
-      text document.type, :size => 14, :style => :bold
+      fill_color "8f8f8f"
+      text document.type, :size => 18, :style => :bold
+      fill_color "000000"
       stroke do
         line_width 3
         stroke_horizontal_rule
       end
       move_down 10
-      text "NUMBER # ", :size => 10
-      text document.document_number, :size => 14, :style => :bold
+      text "NUMBER # ", :size => 8
+      text document.document_number, :size => 12, :style => :bold
       stroke do
         line_width 1
         stroke_horizontal_rule
       end
       move_down 10
-      text "ISSUE DATE ", :size => 10
-      text document.date.strftime(@user.company.date_format), :size => 14, :style => :bold
+      text "ISSUE DATE ", :size => 8
+      text document.date.strftime(@user.company.date_format), :size => 12, :style => :bold
+      stroke do
+        line_width 1
+        stroke_horizontal_rule
+      end
     end 
     company = @user.company
     grid(1,0).bounding_box do
