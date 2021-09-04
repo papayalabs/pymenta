@@ -30,6 +30,7 @@ class DocumentReport < PdfReport
     end 
     company = @user.company
     grid(1,0).bounding_box do
+      text "FROM:", :size => 10
       stroke do
         line_width 3
         stroke_horizontal_rule
@@ -49,6 +50,7 @@ class DocumentReport < PdfReport
       text company.telephone, :size => 9
     end
     grid(1,1).bounding_box do
+      text "BILL TO:", :size => 10
       stroke_horizontal_rule
       move_down 10
       text document.account.name, :size => 10, :style => :bold
