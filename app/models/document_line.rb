@@ -6,7 +6,7 @@ class DocumentLine < ApplicationRecord
   belongs_to :document, :foreign_key => 'header_id'
   belongs_to :product
   belongs_to :warehouse
-  belongs_to :stock
+  belongs_to :stock, optional: true
 
   before_create :create_functions
   before_destroy :destroy_functions

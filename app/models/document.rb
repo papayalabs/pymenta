@@ -6,7 +6,7 @@ class Document < ApplicationRecord
   belongs_to :document_type
   belongs_to :account
   belongs_to :warehouse
-  belongs_to :payments_document
+  belongs_to :payments_document, optional: true
 
   has_many :document_lines, :foreign_key => 'header_id'
 
