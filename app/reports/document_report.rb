@@ -98,7 +98,7 @@ class DocumentReport < PdfReport
         stroke_horizontal_rule
       end
       move_down 3
-      data = [%w[Code Description Quantity Unit Price Total]]
+      data = [['Item Code','Item Description','Quantity','Unit','Price','Total']]
       table(data, :row_colors => ["FFFFFF"],column_widths: TABLE_WIDTHS,:cell_style => { :border_width => 0 })
   end
 
