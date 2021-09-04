@@ -87,8 +87,8 @@ Rails.application.configure do
   # Configuration for Paper Clip
   config.paperclip_defaults = {
     :storage => :s3,
-    :s3_region => 'us-west-1',
-    :s3_host_name => 's3-us-west-1.amazonaws.com',
+    :s3_region => 'us-east-1',
+    :s3_host_name => 's3-us-east-1.amazonaws.com',
     :bucket => 'pymenta',
     :s3_protocol => :https,
     :s3_credentials => "#{Rails.root}/config/aws.yml"
