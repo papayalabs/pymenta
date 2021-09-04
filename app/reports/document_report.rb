@@ -125,9 +125,9 @@ class DocumentReport < PdfReport
       text_box "SUB-TOTAL", :align => :left, :size => 12, :at => [0, y - 30]
       text format_currency(@document.sub_total).to_s + " " + @user.company.unit, :align => :right, :style => :bold, :size => 12
       stroke_horizontal_rule if @document.tax != 0
-      move_down 5 if @document.tax != 0
-      text_box "VAT " + "( " + @document.tax.to_s + " % )", :align => :left, :size => 12, :at => [0, y - 30] if @document.tax != 0
-      text format_currency(@document.tax_total).to_s + " " + @user.company.unit, :align => :right, :style => :bold,:size => 12 if @document.tax != 0
+      move_down 5
+      text_box "VAT " + "( " + @document.tax.to_s + " % )", :align => :left, :size => 12, :at => [0, y - 30]
+      text format_currency(@document.tax_total).to_s + " " + @user.company.unit, :align => :right, :style => :bold,:size => 12
       stroke_horizontal_rule if @document.retention != 0
       move_down 5 if @document.retention != 0
       text_box "RETENTION" + "( " + @document.retention.to_s + " % )", :align => :left, :size => 12, :at => [0, y - 30] if @document.retention != 0
