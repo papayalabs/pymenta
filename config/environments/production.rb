@@ -86,7 +86,7 @@ Rails.application.configure do
   
   # Configuration for Paper Clip
   config.paperclip_defaults = {
-    # :storage => :s3,
+    :storage => :s3,
     :s3_region => 'us-east-1',
     :s3_host_name => ENV["S3_HOST_NAME"],
     :bucket => 'pymenta',
