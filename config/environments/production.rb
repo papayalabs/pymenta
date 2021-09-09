@@ -88,10 +88,12 @@ Rails.application.configure do
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_region => 'us-east-1',
-    :s3_host_name => ENV["S3_HOST_NAME"],
     :bucket => 'pymenta',
-    :endpoint => ENV["S3_ENDPOINT"],
     :s3_protocol => :https,
+    s3_host_name => ENV["S3_HOST_NAME"],
+    s3_options => {
+      endpoint => "https://" + ENV["S3_HOST_NAME"],
+    },
     :s3_credentials => "#{Rails.root}/config/aws.yml"
   }
   
