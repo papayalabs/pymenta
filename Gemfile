@@ -8,7 +8,7 @@ git_source(:github) do |repo_name|
 end
 
 # Use Puma as the app server
-gem "puma", ">= 4.3.8"
+gem "puma", ">= 5.5.1"
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -116,5 +116,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'aws-sdk', '< 2.0'
 gem 'aws-sdk-s3'
 gem 'bigdecimal', '1.3.5'
+gem "json"
 
 
