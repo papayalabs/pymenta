@@ -5,13 +5,13 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  database: pymenta
-  username: root
-  password: root
+  adapter: postgresql
+  encoding: unicode
+  database: pymenta	
   pool: 5
+  username: papayalabs
+  password:
+  port: 5433
 
 development:
   <<: *default
@@ -23,9 +23,11 @@ test:
   <<: *default
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  database: pymenta	
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: pymenta
+  username: root
+  password: root
   pool: 5
-  username: pymenta
-  password:
+

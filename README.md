@@ -57,6 +57,26 @@ In order to use heroku, you need to:
 
 	`heroku run rake db:migrate`
 	
+Restore Database
+------------------
+
+ * restore to local database
+
+  ```bash
+    pg_restore --verbose --clean --no-acl --no-owner -p port -h localhost -U username -d database latest.dump
+  ```
+* enter in postgresql locally
+
+  ```bash
+    psql -U username -p port (username:papayalabs,port:5433,database:pymenta)
+  ````
+* inside postgresql console fix schema_migrations ( replace with the values of the migration of your local installation )
+
+  ```bash
+      \c database
+      delete from schema_migrations;
+      insert into schema_migrations (version) values ('20120418171104'),('20120418171110'),('20130913224704'),('20131030220237'),('20131031142647'),('20131107000336'),('20131114214311'),('20140408103342'),('20141028192038'),('20141030191950'),('20141031130722'),('20141031141853'),('20141031183352'),('20150222233731'),('20151211214830'),('20160129141729'),('20170314023025'),('20170314023034'),('20190213093216');
+  ``` 
 ## License
 
 This code is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).	
