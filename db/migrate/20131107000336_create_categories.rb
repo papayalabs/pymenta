@@ -1,4 +1,4 @@
-class CreateCategories < ActiveRecord::Migration[5.0]
+class CreateCategories < ActiveRecord::Migration[7.0]
   def change
     create_table :categories, :id => false do |t|
       t.string :id, :limit => 36, :primary => true

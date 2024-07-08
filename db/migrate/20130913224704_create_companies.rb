@@ -1,4 +1,4 @@
-class CreateCompanies < ActiveRecord::Migration[5.0]
+class CreateCompanies < ActiveRecord::Migration[7.0]
   def change
     create_table :companies, :id => false do |t|
       t.string :id, :limit => 36, :primary => true
@@ -6,7 +6,6 @@ class CreateCompanies < ActiveRecord::Migration[5.0]
       t.string :address
       t.string :id_number1
       t.string :id_number2
-      t.string :address
       t.string :city
       t.string :state
       t.string :country
@@ -30,6 +29,12 @@ class CreateCompanies < ActiveRecord::Migration[5.0]
       t.string :delimiter
       
       t.string :id_number1_label
+
+      #Logo attachment
+      t.string :logo_file_name
+      t.string :logo_content_type
+      t.integer :logo_file_size
+      t.datetime :logo_updated_at
 
       t.timestamps
     end

@@ -43,7 +43,7 @@ class DocumentReport < PdfReport
       end
       move_down 10
       text company.name, :size => 10,:style => :bold
-      text company.id_number1_label + ': ' + company.id_number1, :size => 9
+      text company.id_number1_label.to_s + ': ' + company.id_number1.to_s, :size => 9
       if company.address != nil
         text company.address.truncate(94,omission: ''), :size => 9
       end
@@ -60,7 +60,7 @@ class DocumentReport < PdfReport
       stroke_horizontal_rule
       move_down 10
       text document.account.name, :size => 10, :style => :bold
-      text company.id_number1_label + ': ' + document.account.id_number1, :size => 9
+      text company.id_number1_label.to_s + ': ' + document.account.id_number1.to_s, :size => 9
       if document.account.address != nil
         text document.account.address.truncate(94,omission: ''), :size => 9
       end
@@ -88,7 +88,7 @@ class DocumentReport < PdfReport
     if "#{RAILS_ROOT}" == "/app"
       image open(@user.company.logo.url(:square).sub(/\?.+\Z/, '')), :width => 225, :height => 60
     else
-      image "#{RAILS_ROOT}/public"+@user.company.logo.url(:square).sub(/\?.+\Z/, ''), :width => 225, :height => 60
+      image "#{RAILS_ROOT}/app/assets/images/"+@user.company.logo.url(:square).sub(/\?.+\Z/, ''), :width => 225, :height => 60
     end
   end
 

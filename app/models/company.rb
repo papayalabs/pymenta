@@ -25,6 +25,7 @@ class Company < ApplicationRecord
 #      :dropbox_options => {
 #       path: proc{|style| "#{style}/#{id}_#{logo.original_filename}"}
 #      },
+      default_url: 'missing.png',
       styles: {
       thumb: '100x100>',
       square: '500x200>',
@@ -36,6 +37,8 @@ class Company < ApplicationRecord
   
   def country_name
     country = ISO3166::Country[self.country]
-    country.translations[I18n.locale.to_s] || country.name
+    if country != nil
+      country.translations[I18n.locale.to_s] || country.name
+    end
   end
 end

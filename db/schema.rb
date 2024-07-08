@@ -2,17 +2,16 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_13_093216) do
-
-  create_table "accounts", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2019_02_13_093216) do
+  create_table "accounts", id: false, charset: "utf8mb3", force: :cascade do |t|
     t.string "id", limit: 36
     t.string "version"
     t.string "domain"
@@ -40,7 +39,7 @@ ActiveRecord::Schema.define(version: 2019_02_13_093216) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "active_admin_comments", charset: "utf8mb3", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
     t.string "resource_id", null: false
@@ -49,12 +48,12 @@ ActiveRecord::Schema.define(version: 2019_02_13_093216) do
     t.bigint "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
 
-  create_table "admin_users", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "admin_users", id: false, charset: "utf8mb3", force: :cascade do |t|
     t.string "id", limit: 36
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -72,7 +71,7 @@ ActiveRecord::Schema.define(version: 2019_02_13_093216) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "brands", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "brands", id: false, charset: "utf8mb3", force: :cascade do |t|
     t.string "id", limit: 36
     t.string "version"
     t.string "domain"
@@ -83,7 +82,7 @@ ActiveRecord::Schema.define(version: 2019_02_13_093216) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "categories", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "categories", id: false, charset: "utf8mb3", force: :cascade do |t|
     t.string "id", limit: 36
     t.string "version"
     t.string "domain"
@@ -94,7 +93,7 @@ ActiveRecord::Schema.define(version: 2019_02_13_093216) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "companies", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "companies", id: false, charset: "utf8mb3", force: :cascade do |t|
     t.string "id", limit: 36
     t.string "name"
     t.string "address"
@@ -120,15 +119,15 @@ ActiveRecord::Schema.define(version: 2019_02_13_093216) do
     t.string "separator"
     t.string "delimiter"
     t.string "id_number1_label"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "logo_file_name"
     t.string "logo_content_type"
-    t.bigint "logo_file_size"
+    t.integer "logo_file_size"
     t.datetime "logo_updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "document_lines", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "document_lines", id: false, charset: "utf8mb3", force: :cascade do |t|
     t.string "id", limit: 36
     t.string "version"
     t.string "domain"
@@ -152,7 +151,7 @@ ActiveRecord::Schema.define(version: 2019_02_13_093216) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "document_types", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "document_types", id: false, charset: "utf8mb3", force: :cascade do |t|
     t.string "id", limit: 36
     t.string "version"
     t.string "domain"
@@ -165,7 +164,7 @@ ActiveRecord::Schema.define(version: 2019_02_13_093216) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "documents", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "documents", id: false, charset: "utf8mb3", force: :cascade do |t|
     t.string "id", limit: 36
     t.string "version"
     t.string "domain"
@@ -198,7 +197,7 @@ ActiveRecord::Schema.define(version: 2019_02_13_093216) do
     t.decimal "retention_total", precision: 10, scale: 2, default: "0.0"
   end
 
-  create_table "payment_types", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "payment_types", id: false, charset: "utf8mb3", force: :cascade do |t|
     t.string "id", limit: 36
     t.string "version"
     t.string "domain"
@@ -209,7 +208,7 @@ ActiveRecord::Schema.define(version: 2019_02_13_093216) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "payments", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "payments", id: false, charset: "utf8mb3", force: :cascade do |t|
     t.string "id", limit: 36
     t.string "version"
     t.string "domain"
@@ -223,7 +222,7 @@ ActiveRecord::Schema.define(version: 2019_02_13_093216) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "payments_documents", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "payments_documents", id: false, charset: "utf8mb3", force: :cascade do |t|
     t.string "id", limit: 36
     t.string "version"
     t.string "domain"
@@ -245,7 +244,7 @@ ActiveRecord::Schema.define(version: 2019_02_13_093216) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "products", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "products", id: false, charset: "utf8mb3", force: :cascade do |t|
     t.string "id", limit: 36
     t.string "version"
     t.string "domain"
@@ -262,18 +261,18 @@ ActiveRecord::Schema.define(version: 2019_02_13_093216) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "roles", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "roles", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
-    t.integer "resource_id"
+    t.bigint "resource_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["name"], name: "index_roles_on_name"
-    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
   end
 
-  create_table "service_payments", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "service_payments", id: false, charset: "utf8mb3", force: :cascade do |t|
     t.string "id", limit: 36
     t.string "amount"
     t.string "description"
@@ -286,7 +285,7 @@ ActiveRecord::Schema.define(version: 2019_02_13_093216) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "stocks", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "stocks", id: false, charset: "utf8mb3", force: :cascade do |t|
     t.string "id", limit: 36
     t.string "version"
     t.string "domain"
@@ -300,7 +299,7 @@ ActiveRecord::Schema.define(version: 2019_02_13_093216) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", id: false, charset: "utf8mb3", force: :cascade do |t|
     t.string "id", limit: 36
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -322,7 +321,7 @@ ActiveRecord::Schema.define(version: 2019_02_13_093216) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "users_roles", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users_roles", id: false, charset: "utf8mb3", force: :cascade do |t|
     t.string "user_id"
     t.integer "role_id"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
