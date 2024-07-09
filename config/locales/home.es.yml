@@ -6,7 +6,7 @@ es:
       title2: "Relajate, ahora nosotros nos encargamos de lo complicado."
       ourproduct: "Proyecto de Código Abierto"
       description: "Pymenta es un Sistema ERP muy simple hecho en Rails que permite a las pequeñas compañias crear, administrar e imprimir documentos ( facturas, notas, presupuestos, notas de creditos, etc). Tambien puede administrar almacenes, proveedores, clientes, productos e inventario. 
-	  Esta aplicación se publica como un proyecto de código abierto con fines educativos. Utiliza Rails 5, React, Boostrap, Device, Simple_Form, Gamba, PaperClip y ActiveAdmin."
+	  Esta aplicación se publica como un proyecto de código abierto con fines educativos. Utiliza Rails, React, Boostrap, Device, Simple_Form, Gamba, PaperClip y ActiveAdmin."
       subtitle1: "Recived Invoices"
       subtitle1: "Facturas Recibidas"
       subdescription1: "Permite archivar las facturas recibidas de los proveedores."
@@ -20,7 +20,7 @@ es:
       email: "papayalabs@gmail.com"	
       madewith: "Hecho con"
       invenezuela: "en Venezuela"
-      copyright: "©2015 "
+      copyright: "©2015-2024 "
       companyname: "Papaya Labs"
       allrightreserved: "Todos los derechos reservados"
       contactus: "Contactanos"
