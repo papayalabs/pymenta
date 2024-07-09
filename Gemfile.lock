@@ -1660,7 +1660,7 @@ GEM
       i18n
       rake (>= 10.0.0)
       sshkit (>= 1.9.0)
-    capistrano-bundler (1.6.0)
+    capistrano-bundler (2.1.0)
       capistrano (~> 3.1)
     capistrano-rails (1.6.3)
       capistrano (~> 3.1)
@@ -2041,9 +2041,9 @@ DEPENDENCIES
   bootstrap-sass (~> 2.3.2.0)
   bootstrap-select-rails
   bootswatch-rails
-  capistrano (~> 3.10)
-  capistrano-bundler (~> 1.5)
-  capistrano-rails (~> 1.4)
+  capistrano
+  capistrano-bundler
+  capistrano-rails
   capistrano-rails-console
   capistrano-rake
   capistrano-rvm

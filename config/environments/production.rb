@@ -97,9 +97,9 @@ Rails.application.configure do
      :s3_region => 'us-east-1',
      :bucket => 'pymenta',
      :s3_protocol => :https,
-     :s3_host_name => ENV["S3_HOST_NAME"],
+     :s3_host_name => "",
      :s3_options => {
-       :endpoint => "https://" + ENV["S3_HOST_NAME"],
+       :endpoint => "",
      },
      :s3_credentials => "#{Rails.root}/config/aws.yml"
    }

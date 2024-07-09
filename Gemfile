@@ -138,9 +138,9 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   #Add Capistrano for deploy
-  gem "capistrano", "~> 3.10", require: false
-  gem 'capistrano-bundler', '~> 1.5'
-  gem "capistrano-rails", "~> 1.4", require: false
+  gem "capistrano"
+  gem 'capistrano-bundler'
+  gem "capistrano-rails", require: false
   gem 'capistrano-rails-console', require: false
   gem 'capistrano-rake', require: false
   gem 'capistrano-rvm', require: false
