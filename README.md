@@ -4,17 +4,17 @@ Pymenta Rails Open Source Project
 Pymenta is a very simple Rails Cloud ERP System created for small companies to create, manage and print documents ( invoices, notes, quotations, credits, etc). 
 You can manage warehouses, providers, clients, products, stock and print statistic reports. 
 
-This application is released as an open source project for educational purposes. Uses Rails 5, React, Boostrap, Device, Simple_Form, Prawn, PaperClip and ActiveAdmin.
+This application is released as an open source project for educational purposes. Uses Ruby 3.2.0, Rails 7, React, Boostrap, Device, Simple_Form, Prawn, PaperClip and ActiveAdmin.
 
 Demo Application
 ----------------
 
-A demo application can be found at http://pymenta.herokuapp.com/
+A demo application can be found at http://pymenta.thewhiteowlacademy.com/
 
 Local Installation
 ------------------
 
-1. Download and install railsinstaller (git is included)--> www.railsinstaller.org
+1. Download and install RVM and Rails
 
 2. Clone the repository
 
@@ -36,26 +36,17 @@ Local Installation
 
   `rails s`
 
-Using Heroku
+Using Capistrano to deploy
 ------------------
 
-In order to use heroku, you need to:
+In order to use Capistrano with your server, you need to:
 
-  1. Download and install the heroku toolbelt for windows at https://toolbelt.heroku.com/
+  1. Go to config/deploy/production.rb and update the values of the server and private key with your values
 
-  2. Log in using the email address and password you used when creating your Heroku account
+  2. Deploy the application
 
-  3. Create an application
+	`cap production deploy`
 
-	`heroku create`
-
-  4. Deploy the application
- 	
-	`git push heroku master ( if you get Permission denied (publickey) --> heroku keys:add )`
-
-  5. Migrate database
-
-	`heroku run rake db:migrate`
 	
 Restore Database
 ------------------
