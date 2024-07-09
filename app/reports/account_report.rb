@@ -24,16 +24,5 @@ class AccountReport < PdfReport
     text "EMAIL: " + (account.email.nil? ? '' : account.email), :size => 10
     move_down 10
     text "CONTACTO: " + (account.contact.nil? ? '' : account.contact), :style => :bold
-  end
-
-  private
-
-  def logo
-    puts "directory RAILS_ROOT = #{RAILS_ROOT}"
-    if "#{RAILS_ROOT}" == "/app"
-      image open(@user.company.logo.url(:square).sub(/\?.+\Z/, '')), :width => 225, :height => 60
-    else
-      image "#{RAILS_ROOT}/public"+@user.company.logo.url(:square).sub(/\?.+\Z/, ''), :width => 225, :height => 60
-    end
-  end    
+  end  
 end

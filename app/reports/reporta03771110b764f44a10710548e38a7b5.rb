@@ -45,17 +45,6 @@ class Reporta03771110b764f44a10710548e38a7b5< PdfReport
 
   private
 
-  
-
-  def logo
-    puts "directory RAILS_ROOT = #{RAILS_ROOT}"
-    if "#{RAILS_ROOT}" == "/app"
-      image open(@user.company.logo.url(:square).sub(/\?.+\Z/, '')), :width => 225, :height => 60
-    else
-      image "#{RAILS_ROOT}/public"+@user.company.logo.url(:square).sub(/\?.+\Z/, ''), :width => 225, :height => 60
-    end
-  end
-
   def display_header_table
       data = [%w[COD DESCRIPCION UND CANT PRECIO TOTAL]]
       table(data, :row_colors => ["F0F0F0"],column_widths: TABLE_WIDTHS)

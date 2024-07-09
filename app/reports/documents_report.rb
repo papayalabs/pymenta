@@ -32,15 +32,6 @@ class DocumentsReport < PdfReport
     text_box(title, :at=>[3+x,cursor-22], :width=>width, :height=>30, :size => 10,:style => :bold)
     text_box(description, :at=>[3+x,cursor-40], :width=>width, :height=>30, :size => 10)
   end
- 
-  def logo
-    puts "directory RAILS_ROOT = #{RAILS_ROOT}"
-    if "#{RAILS_ROOT}" == "/app"
-      image open(@user.company.logo.url(:square).sub(/\?.+\Z/, '')), :width => 225, :height => 60
-    else
-      image "#{RAILS_ROOT}/public"+@user.company.logo.url(:square).sub(/\?.+\Z/, ''), :width => 225, :height => 60
-    end
-  end
 
   def display_header_table
     if I18n.locale == :es

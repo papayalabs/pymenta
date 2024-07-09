@@ -16,7 +16,7 @@ class AccountsReport < PdfReport
     @city = city
     logo
     move_down 40
-    text 'Listado de '+accounts.first.type,:size => 24, :style => :bold
+    text 'Listado de '+accounts.first.type.to_s,:size => 24, :style => :bold if accounts.first != nil
     move_down 40
     display_header_table
     display_invoice_table
@@ -29,15 +29,6 @@ class AccountsReport < PdfReport
     stroke_rectangle [0+x,cursor-20], width, 30
     text_box(title, :at=>[3+x,cursor-22], :width=>width, :height=>30, :size => 10,:style => :bold)
     text_box(description, :at=>[3+x,cursor-40], :width=>width, :height=>30, :size => 10)
-  end
- 
-  def logo
-    puts "directory RAILS_ROOT = #{RAILS_ROOT}"
-    if "#{RAILS_ROOT}" == "/app"
-      image open(@user.company.logo.url(:square).sub(/\?.+\Z/, '')), :width => 225, :height => 60
-    else
-      image "#{RAILS_ROOT}/public"+@user.company.logo.url(:square).sub(/\?.+\Z/, ''), :width => 225, :height => 60
-    end
   end
 
   def display_header_table

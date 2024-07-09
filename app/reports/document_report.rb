@@ -80,18 +80,7 @@ class DocumentReport < PdfReport
   end
 
   private
-
   
-
-  def logo
-    puts "directory RAILS_ROOT = #{RAILS_ROOT}"
-    if "#{RAILS_ROOT}" == "/app"
-      image open(@user.company.logo.url(:square).sub(/\?.+\Z/, '')), :width => 225, :height => 60
-    else
-      image "#{RAILS_ROOT}/app/assets/images/"+@user.company.logo.url(:square).sub(/\?.+\Z/, ''), :width => 225, :height => 60
-    end
-  end
-
   def display_header_table
       stroke do
         line_width 3
