@@ -30,6 +30,10 @@ class Document < ApplicationRecord
       end
     end
   end
+
+  def full_name
+    "#{type} ------ #{document_number} ------- #{account.name} -------- #{date} ---------- #{sub_total}---------- #{tax_total}---------- #{total}"
+  end
   
   private
     def ensure_counter_is_not_greater_than_limit
@@ -42,10 +46,4 @@ class Document < ApplicationRecord
       self.company.counter = self.company.counter + 1
       self.company.save
     end
-
-
-  def full_name
-     "#{type} ------ #{document_number} ------- #{account.name} -------- #{date} ---------- #{sub_total}---------- #{tax_total}---------- #{total}"
-   end
-
 end

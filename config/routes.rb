@@ -81,8 +81,8 @@ Rails.application.routes.draw do
     post '/payments_documents/create_payment_line' => 'payments_documents#create_payment_line', :as => :create_payment_line
     post '/payments_documents/new' => 'payments_documents#new'
     get '/payments_documents/new_modal' => 'payments_documents#new_modal', :as => :new_modal
-    post '/payments_documents/create_payments_document_account' => 'payments_documents#create_payments_document_account', :as => :create_payments_document_account   
-
+    #post '/payments_documents/create_payments_document_account' => 'payments_documents#create_payments_document_account', :as => :create_payments_document_account   
+    get '/payments_documents/create_payments_document_account' => 'payments_documents#create_payments_document_account', :as => :create_payments_document_account 
     get '/learn' => 'learn#index', :as => :learn_personalize_report
     get '/privacy' => 'privacy#index', :as => :privacy
     get '/terms' => 'terms#index', :as => :terms 
