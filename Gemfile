@@ -152,7 +152,7 @@ group :development do
 end
 
 gem 'unicorn-rails'
-gem 'listen', '~> 3.5'
+gem 'listen'
 
 #AWS
 gem 'aws-sdk'
