@@ -53,17 +53,6 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
 
-group :development do
-  # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem "web-console"
-
-  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
-
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
-end
-
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
@@ -137,18 +126,8 @@ end
 
 group :production do
   # Use Postgresql for production
-  gem 'pg'
-  gem 'rails_12factor'
   gem 'execjs'
   gem 'therubyracer'
-end
-
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  #gem 'byebug', platform: :mri
-  #Use sqlite3 as the database for Active Record
-  gem 'pg'
-  gem 'rails_12factor'
 end
 
 group :development do
@@ -158,10 +137,21 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  #Add Capistrano for deploy
+  gem "capistrano", "~> 3.10", require: false
+  gem 'capistrano-bundler', '~> 1.5'
+  gem "capistrano-rails", "~> 1.4", require: false
+  gem 'capistrano-rails-console', require: false
+  gem 'capistrano-rake', require: false
+  gem 'capistrano-rvm', require: false
+  gem 'sshkit-sudo'
+  gem 'capistrano3-unicorn'
+  gem 'pry'
+  gem 'pry-byebug'
+  gem 'pry-rails'
+  gem 'erd'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #AWS
 gem 'aws-sdk'
@@ -170,3 +160,10 @@ gem 'bigdecimal'
 gem "json"
 gem 'mysql2', '>= 0.5.6'
 gem 'turbolinks'
+gem 'pg'
+gem 'rails_12factor'
+
+#For Capistrano SSH
+gem 'net-ssh', '>= 6.0.2'
+gem 'ed25519', '>= 1.2', '< 2.0'
+gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
