@@ -135,7 +135,7 @@ group :development do
   gem 'web-console'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'listen'
+  #gem 'listen'
   gem 'spring-watcher-listen', '~> 2.0.0'
   #Add Capistrano for deploy
   gem "capistrano"
@@ -152,6 +152,7 @@ group :development do
   gem 'erd'
 end
 
+gem 'listen'
 gem 'unicorn-rails'
 
 #AWS

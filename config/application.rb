@@ -20,5 +20,8 @@ module Pymenta
     config.i18n.available_locales = [:es, :en]
     config.react.addons = true
     config.limit = 15
+    config.hosts << "pymenta.thewhiteowlacademy.com"
+    config.hosts << "pymenta.papayalabs.io"
+    config.hosts << "pymenta.net"
   end
 end
