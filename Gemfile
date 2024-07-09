@@ -152,6 +152,7 @@ group :development do
   gem 'erd'
 end
 
+gem 'unicorn-rails'
 
 #AWS
 gem 'aws-sdk'
@@ -162,6 +163,7 @@ gem 'mysql2', '>= 0.5.6'
 gem 'turbolinks'
 gem 'pg'
 gem 'rails_12factor'
+
 
 #For Capistrano SSH
 gem 'net-ssh', '>= 6.0.2'
