@@ -18,6 +18,8 @@ set :branch, ENV['BRANCH'] if ENV['BRANCH']
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/var/www/pymenta"
 set :unicorn_config_path, "/var/www/pymenta/shared/config/unicorn.rb"
+set :default_env, { rvm_bin_path: '~/.rvm/bin' }
+
 
 #set :default_env, { rvm_bin_path: '/usr/local/rvm/bin' }
 
