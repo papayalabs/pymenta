@@ -6,7 +6,7 @@ upstream pymenta-app {
 
 server {
     listen 80;
-    server_name pymenta.thewhiteowlacademy.com;
+    server_name pymenta.papayalabs.io;
 
     root /var/www/pymenta/current/public;
 
