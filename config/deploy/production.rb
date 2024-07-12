@@ -8,15 +8,16 @@
 # server "db.example.com", user: "deploy", roles: %w{db}
 
 #set :production_proxy_cmd, 'ssh artsite@146.190.158.230 -i ~/.ssh/artsite.pem -W %h:%p'
-set :production_proxy_cmd, 'ssh pymenta@thewhiteowlacademy.com -i ~/.ssh/pymenta.pem -W %h:%p'
+set :production_proxy_cmd, "ssh #{Rails.application.secrets.server_user}@#{Rails.application.secrets.server_domain} -i #{Rails.application.secrets.server_key} -W %h:%p"
 
 set :ssh_options,
     proxy: Net::SSH::Proxy::Command.new("#{fetch :production_proxy_cmd}"),
-    keys: ['~/.ssh/pymenta.pem']
+    keys: [Rails.application.secrets.server_key]
     #keys: ['~/.ssh/artsite.pem']
 
 #server '146.190.158.230', user: 'artsite', roles: %w{app db web}
-server 'thewhiteowlacademy.com', user: 'pymenta', roles: %w{app db web}
+server Rails.application.secrets.server_domain, user: Rails.application.secrets.server_user, roles: %w{app db web}
+
 
 set :deploy_to, '/var/www/pymenta'
 
