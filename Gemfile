@@ -72,7 +72,7 @@ gem 'react-rails', '~> 1.5'
 # Using Bootstrap 2.3.2
 gem 'twitter-bootstrap-rails', '~> 3.2.0'
 gem 'bootstrap-select-rails'
-gem 'bootstrap-sass', '~> 2.3.2.0'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'bootswatch-rails' #This gem is meant to be used with bootstrap-sass. It gives you complete scss versions of bootswatches for use in your Rails asset pipeline, just like bootstrap-sass gives you scss version of bootstrap itself.
 
 
