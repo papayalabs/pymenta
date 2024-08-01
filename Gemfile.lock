@@ -83,6 +83,8 @@ GEM
     arbre (1.7.0)
       activesupport (>= 3.0.0)
       ruby2_keywords (>= 0.0.2)
+    autoprefixer-rails (10.4.19.0)
+      execjs (~> 2)
     aws-eventstream (1.3.0)
     aws-partitions (1.953.0)
     aws-sdk (3.2.0)
@@ -1648,8 +1650,9 @@ GEM
     bindex (0.8.1)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
-    bootstrap-sass (2.3.2.2)
-      sass (~> 3.2)
+    bootstrap-sass (3.4.1)
+      autoprefixer-rails (>= 5.2.1)
+      sassc (>= 2.0.0)
     bootstrap-select-rails (1.13.8)
     bootswatch-rails (3.3.5)
       railties (>= 3.1)
@@ -1929,11 +1932,6 @@ GEM
       rexml
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
-    sass (3.7.4)
-      sass-listen (~> 4.0.0)
-    sass-listen (4.0.0)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -2046,7 +2044,7 @@ DEPENDENCIES
   bcrypt_pbkdf (>= 1.0, < 2.0)
   bigdecimal
   bootsnap
-  bootstrap-sass (~> 2.3.2.0)
+  bootstrap-sass (~> 3.4.1)
   bootstrap-select-rails
   bootswatch-rails
   capistrano
