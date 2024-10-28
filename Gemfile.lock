@@ -1922,8 +1922,7 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
-    rexml (3.3.1)
-      strscan
+    rexml (3.3.9)
     rolify (5.3.0)
     ruby-graphviz (1.2.5)
       rexml
@@ -1976,7 +1975,6 @@ GEM
     stimulus-rails (1.3.3)
       railties (>= 6.0.0)
     stringio (3.1.1)
-    strscan (3.1.0)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     therubyracer (0.12.3)
