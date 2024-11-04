@@ -12,7 +12,7 @@ class Product < ApplicationRecord
   has_many :stocks
   has_many :document_lines
   
-  UNIT_TYPES = ["UND","MTS","HRS"]
+  UNIT_TYPES = ["UND","MTS","HRS","MONTHS"]
   validates :units, inclusion: UNIT_TYPES
 
 end
