@@ -93,16 +93,16 @@ Rails.application.configure do
   
    # Configuration for Paper Clip
    config.paperclip_defaults = {
-     :storage => :s3,
-     :s3_region => 'us-east-1',
-     :bucket => 'pymenta',
-     :s3_protocol => :https,
-     :s3_host_name => "",
-     :s3_options => {
-       :endpoint => "",
-     },
-     :s3_credentials => "#{Rails.root}/config/aws.yml"
-   }
+    :storage => :s3,
+    :s3_region => 'us-east-2',
+    :bucket => 'pymenta',
+    :s3_protocol => :https,
+    :s3_host_name => "",
+    :s3_options => {
+      :endpoint => "https://s3-us-east-2.amazonaws.com",
+    },
+    :s3_credentials => "#{Rails.root}/config/aws.yml"
+  }
    
    # Configuration for mailer
    config.action_mailer.smtp_settings = {

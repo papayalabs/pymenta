@@ -87,7 +87,7 @@ class PaymentsDocumentsController < ApplicationController
     @payments_document = PaymentsDocument.find(params[:id])
 
     respond_to do |format|
-      if @payments_document.update_attributes(payment_document_params)
+      if @payments_document.update(payment_document_params)
         format.html { redirect_to @payments_document, notice: 'Payments document was successfully updated.' }
         format.json { head :no_content }
       else

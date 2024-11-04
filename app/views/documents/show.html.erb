@@ -97,22 +97,30 @@
       </div>
       </div>
       <div class="row-fluid">
-      <div class="span1">
-        <strong><%=t '.quantity', :default =>  t("helpers.labels.quantity") %></strong>
+        <div class="span1">
+          <strong><%=t '.quantity', :default =>  t("helpers.labels.quantity") %></strong>
+        </div>
+        <div class="span4">
+          <%= text_field_tag 'quantity', '',:style => "width:100%;" %>
+        </div>
+        <div class="span1">
+          <strong><%=t '.price', :default =>  t("helpers.labels.price")  %></strong>
+        </div>
+        <div class="span4">
+          <%= text_field_tag 'price', '', :style => "width:100%;" %>
+        </div>
+        <div class="span2">
+          <%= submit_tag( "New Line", class: "btn btn-danger", :style => "width:100%;" ) %>
+        </div>
+	    </div>
+      <div class="row-fluid">
+        <div class="span2">
+          <strong><%=t '.notes', :default =>  t("helpers.labels.notes") %></strong>
+        </div>
+        <div class="span10">
+          <%= text_field_tag 'notes', '',:style => "width:100%;" %>
+        </div>
       </div>
-      <div class="span4">
-        <%= text_field_tag 'quantity', '',:style => "width:100%;" %>
-      </div>
-      <div class="span1">
-        <strong><%=t '.price', :default =>  t("helpers.labels.price")  %></strong>
-      </div>
-      <div class="span4">
-        <%= text_field_tag 'price', '', :style => "width:100%;" %>
-      </div>
-      <div class="span2">
-        <%= submit_tag( "New Line", class: "btn btn-danger", :style => "width:100%;" ) %>
-      </div>
-	</div>
 <% end %>
 
 <div class="form-actions">

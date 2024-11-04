@@ -79,7 +79,7 @@ class StocksController < ApplicationController
     @stock = Stock.find(params[:id])
 
     respond_to do |format|
-      if @stock.update_attributes(stock_params)
+      if @stock.update(stock_params)
         format.html { redirect_to @stock, notice: 'Stock was successfully updated.' }
         format.json { head :no_content }
       else

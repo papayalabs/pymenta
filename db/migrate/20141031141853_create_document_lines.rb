@@ -21,6 +21,7 @@ class CreateDocumentLines < ActiveRecord::Migration[7.0]
       t.string :product_id
       t.string :warehouse_id
       t.string :stock_id
+      t.string :notes
 
       t.timestamps
     end

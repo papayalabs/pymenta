@@ -65,7 +65,7 @@ class DocumentTypesController < ApplicationController
     @document_type = DocumentType.find(params[:id])
 
     respond_to do |format|
-      if @document_type.update_attributes(document_type_params)
+      if @document_type.update(document_type_params)
         format.html { redirect_to @document_type, notice: 'Document type was successfully updated.' }
         format.json { render json: @document_type }
       else

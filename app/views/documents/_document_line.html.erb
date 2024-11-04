@@ -12,7 +12,7 @@
   <tbody>
     <% @document.document_lines.each do |document_line| %>
       <tr>
-        <td><%= document_line.description %></td>
+        <td><%= document_line.description %><%= "</br>".html_safe+document_line.notes if document_line.notes.present? %></td>
         <td><%= document_line.out_quantity %></td>
         <td><%= document_line.product.units %></td>
         <td><%= document_line.price %></td>

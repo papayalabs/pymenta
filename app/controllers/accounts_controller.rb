@@ -65,7 +65,7 @@ class AccountsController < ApplicationController
     @account = Account.find(params[:id])
 
     respond_to do |format|
-      if @account.update_attributes(account_params)
+      if @account.update(account_params)
         format.html { redirect_to @account, notice: 'Account was successfully updated.' }
         format.json { head :no_content }
       else

@@ -65,7 +65,7 @@ class BrandsController < ApplicationController
     @brand = Brand.find(params[:id])
 
     respond_to do |format|
-      if @brand.update_attributes(brand_params)
+      if @brand.update(brand_params)
         format.html { redirect_to @brand, notice: 'Brand was successfully updated.' }
         format.json { render json: @brand }
       else

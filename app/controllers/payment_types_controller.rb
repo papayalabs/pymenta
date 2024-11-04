@@ -65,7 +65,7 @@ class PaymentTypesController < ApplicationController
     @payment_type = PaymentType.find(params[:id])
 
     respond_to do |format|
-      if @payment_type.update_attributes(payment_type_params)
+      if @payment_type.update(payment_type_params)
         format.html { redirect_to @payment_type, notice: 'PaymentType was successfully updated.' }
         format.json { render json: @payment_type }
       else

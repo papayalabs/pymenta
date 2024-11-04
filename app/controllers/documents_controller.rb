@@ -70,7 +70,7 @@ class DocumentsController < ApplicationController
     @document = Document.find(params[:id])
 
     respond_to do |format|
-      if @document.update_attributes(document_params)
+      if @document.update(document_params)
         format.html { redirect_to @document, notice: 'Document was successfully updated.' }
         format.json { head :no_content }
       else
@@ -117,7 +117,8 @@ class DocumentsController < ApplicationController
     document_line = DocumentLine.new(domain: current_user.domain, username: current_user.username,
       code: product.code, date: DateTime.now, description: product.description, document_number: document.document_number,
 	    header_id: document.id, product_id: product.id, warehouse_id: document.warehouse.id, 
-	    in_quantity:0, out_quantity: quantity,price: price, total: total, type: document.type, month: DateTime.now.month, year: DateTime.now.year)
+	    in_quantity:0, out_quantity: quantity,price: price, total: total, type: document.type, month: DateTime.now.month, year: DateTime.now.year,
+      notes: params[:notes])
     if document_line.save!
       flash[:notice]='Your line was created'
     else

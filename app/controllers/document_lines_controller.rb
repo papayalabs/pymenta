@@ -65,7 +65,7 @@ class DocumentLinesController < ApplicationController
     @document_line = DocumentLine.find(params[:id])
 
     respond_to do |format|
-      if @document_line.update_attributes(document_line_params)
+      if @document_line.update(document_line_params)
         format.html { redirect_to @document_line, notice: 'Document line was successfully updated.' }
         format.json { head :no_content }
       else
@@ -96,6 +96,6 @@ class DocumentLinesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_line_params
       params.require(:document_line).permit(:code, :date, :description, :document_number, :domain, :id, :in_quantity, :month, :out_quantity, :price,
-   :total, :type, :username, :version, :year, :header_id, :product_id, :warehouse_id)
+   :total, :type, :username, :version, :year, :header_id, :product_id, :warehouse_id, :notes)
     end
 end

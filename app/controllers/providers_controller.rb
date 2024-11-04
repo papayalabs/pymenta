@@ -82,7 +82,7 @@ class ProvidersController < ApplicationController
     @provider = Provider.find(params[:id])
 
     respond_to do |format|
-      if @provider.update_attributes(provider_params)
+      if @provider.update(provider_params)
         format.html { redirect_to @provider, notice: 'Provider was successfully updated.' }
         format.json { head :no_content }
       else

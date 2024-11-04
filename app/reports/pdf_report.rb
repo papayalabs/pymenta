@@ -8,7 +8,8 @@ class PdfReport < Prawn::Document
     if "#{RAILS_ROOT}" == "/app"
       image open(@user.company.logo.url(:square).sub(/\?.+\Z/, '')), :width => 225, :height => 60
     else
-      image "#{RAILS_ROOT}/app/assets/images/"+@user.company.logo.url(:square).sub(/\?.+\Z/, ''), :width => 225, :height => 60
+      #image "#{RAILS_ROOT}/app/assets/images/"+@user.company.logo.url(:square).sub(/\?.+\Z/, ''), :width => 225, :height => 60
+      image "#{RAILS_ROOT}/app/assets/images/manuelfernandez.png", :width => 225, :height => 60    
     end
   end
   def header(title=nil)

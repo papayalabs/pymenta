@@ -1,6 +1,6 @@
 class DocumentReport < PdfReport
   include ActionView::Helpers::NumberHelper
-  TABLE_WIDTHS = [100, 200, 60, 60, 60, 60]
+  TABLE_WIDTHS = [300, 60, 60, 60, 60]
   RAILS_ROOT = Rails.root
   PAGE_MARGIN = [30, 30, 30, 30]
 
@@ -87,7 +87,7 @@ class DocumentReport < PdfReport
         stroke_horizontal_rule
       end
       move_down 3
-      data = [['Item Code','Item Description','Quantity','Unit','Price','Total']]
+      data = [['Item Description','Quantity','Unit','Price','Total']]
       table(data, :row_colors => ["FFFFFF"],column_widths: TABLE_WIDTHS,:cell_style => { :border_width => 0 })
   end
 
@@ -104,7 +104,7 @@ class DocumentReport < PdfReport
       line_width 1
       stroke_horizontal_rule
     end
-    @table_data ||= @document.document_lines.map { |e| [e.code, e.description, e.in_quantity + e.out_quantity, e.product.units, format_currency(e.price), format_currency(e.total)] }
+    @table_data ||= @document.document_lines.map { |e| [e.description+"\n".html_safe+e.notes, e.in_quantity + e.out_quantity, e.product.units, format_currency(e.price), format_currency(e.total)] }
   end
 
   def footer

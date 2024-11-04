@@ -78,7 +78,7 @@ class WarehousesController < ApplicationController
     @warehouse = Warehouse.find(params[:id])
 
     respond_to do |format|
-      if @warehouse.update_attributes(warehouse_params)
+      if @warehouse.update(warehouse_params)
         format.html { redirect_to @warehouse, notice: 'Warehouse was successfully updated.' }
         format.json { render json: @warehouse }
       else

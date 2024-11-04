@@ -74,7 +74,7 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
 
     respond_to do |format|
-      if @company.update_attributes(company_params)
+      if @company.update(company_params)
         format.js do
           if params[:update_formats]
             render 'update_formats'
