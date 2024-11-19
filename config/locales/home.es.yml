@@ -5,8 +5,10 @@ es:
       title: "Ahora tu pyme en la nube!"
       title2: "Relajate, ahora nosotros nos encargamos de lo complicado."
       ourproduct: "Proyecto de Código Abierto"
-      description: "Pymenta es un Sistema ERP muy simple hecho en Rails que permite a las pequeñas compañias crear, administrar e imprimir documentos ( facturas, notas, presupuestos, notas de creditos, etc). Tambien puede administrar almacenes, proveedores, clientes, productos e inventario. 
-	  Esta aplicación se publica como un proyecto de código abierto con fines educativos. Utiliza Rails, React, Boostrap, Device, Simple_Form, Gamba, PaperClip y ActiveAdmin."
+      description: "Pymenta es un sistema ERP Rails Cloud muy simple creado para que pequeñas empresas creen, administren e impriman documentos (facturas, notas, cotizaciones, créditos, etc.). 
+Podrás gestionar almacenes, proveedores, clientes, productos, stock e imprimir informes estadísticos. 
+
+Creé esta aplicación en 2013 como mi primera aplicación Rails. Comenzó con Rails 3.2 y Ruby 2.0. Fue utilizado por algunas empresas privadas hasta 2018 para facturar y crear documentos para gestionar talleres de costura que fabrican textiles para el hogar. Esta aplicación se actualizó a Rails 7 y Ruby 3.2 y se lanzó como un proyecto de código abierto."
       subtitle1: "Recived Invoices"
       subtitle1: "Facturas Recibidas"
       subdescription1: "Permite archivar las facturas recibidas de los proveedores."
