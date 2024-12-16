@@ -88,8 +88,7 @@ gem 'prawn'
 gem 'prawn-table'
 
 # Using PaperClip for file attachment management and Dropbox API to store it
-gem "paperclip", ">= 5.2.0"
-gem 'paperclip-dropbox'
+gem "kt-paperclip"
 
 # Using ActiveAdmin as administratin framework for administration users
 gem 'activeadmin'

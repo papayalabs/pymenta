@@ -147,9 +147,9 @@ ActiveRecord::Schema[7.0].define(version: 2019_02_13_093216) do
     t.string "product_id"
     t.string "warehouse_id"
     t.string "stock_id"
+    t.string "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "notes"
   end
 
   create_table "document_types", id: false, charset: "utf8mb3", force: :cascade do |t|
