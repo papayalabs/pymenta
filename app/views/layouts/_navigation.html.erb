@@ -1,36 +1,21 @@
-<ul class="nav pull-right">
+<div class="flex space-x-4">
   <% if user_signed_in? %>
     <% if current_user.has_role? :admin %>
-      <li>
-        <%= link_to 'Admin', company_path(current_user.company) %>
-      </li>
+      <%= link_to 'Admin', company_path(current_user.company), class: 'text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium' %>
     <% else %>
-      <li>
-        <%= link_to 'Edit account', edit_user_registration_path %>
-      </li>
+      <%= link_to 'Edit account', edit_user_registration_path, class: 'text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium' %>
     <% end %>
+    
+    <%= link_to 'Settings', settings_path, class: 'text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium' %>
+    
+    <%= link_to t('translation.en'), params.merge(locale: "en").permit!, class: 'text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium' %>
+    
+    <%= link_to t('translation.es'), params.merge(locale: "es").permit!, class: 'text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium' %>
+    
+    <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium' %>
   <% else %>
-    <li>
-      <%= link_to 'Sign up', new_user_registration_path %>
-    </li>
+    <%= link_to 'Sign up', new_user_registration_path, class: 'text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium' %>
+    
+    <%= link_to 'Login', new_user_session_path, class: 'bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-md text-sm font-medium' %>
   <% end %>
-  <% if user_signed_in? %>
-    <li>
-      <%= link_to 'Settings', settings_path %>
-    </li>
-    <li>
-	  <%= link_to t('translation.en'), params.merge(locale: "en").permit! %>
-    </li>
-    <li>
-      <%= link_to t('translation.es'), params.merge(locale: "es").permit! %> 
-    </li>
-    <li>
-      <%= link_to 'Logout', destroy_user_session_path, :method=> :delete %>
-    </li>
-  <% else %>
-    <li>
-      <%= link_to 'Login', new_user_session_path %>
-    </li>
-  <% end %>
-</ul>
-
+</div>

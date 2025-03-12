@@ -1,43 +1,49 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%=t '.code', :default =>  t("helpers.labels.code") %></th>
-      <th><%=t '.name', :default =>  t("helpers.labels.name") %></th>
-      <th><%= current_user.company.id_number1_label %></th>
-      <th><%=t '.telephone', :default =>  t("helpers.labels.telephone") %></th>
-      <th><%=t '.city', :default =>  t("helpers.labels.city") %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-   <tbody>
-    <% @clients.each do |client| %>
+<div class="overflow-x-auto shadow-md sm:rounded-lg mb-4">
+  <table class="w-full text-sm text-left text-gray-700">
+    <thead class="text-xs text-white uppercase bg-blue-600">
       <tr>
-        <td><%= client.code %></td>
-        <td><%= client.name %></td>
-        <td><%= client.id_number1 %></td>
-        <td><%= client.telephone %></td>
-        <td><%= client.city %></td>
-        <td>
-	      <%= link_to t('.show', :default => t("helpers.links.show")),
-                      client_path(client), :class => 'btn btn-mini btn-warning' %>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_client_path(client), :class => 'btn btn-mini btn-primary' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      client_path(client),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
+        <th class="px-6 py-3"><%=t '.code', :default =>  t("helpers.labels.code") %></th>
+        <th class="px-6 py-3"><%=t '.name', :default =>  t("helpers.labels.name") %></th>
+        <th class="px-6 py-3"><%= current_user.company.id_number1_label %></th>
+        <th class="px-6 py-3"><%=t '.telephone', :default =>  t("helpers.labels.telephone") %></th>
+        <th class="px-6 py-3"><%=t '.city', :default =>  t("helpers.labels.city") %></th>
+        <th class="px-6 py-3"><%=t '.actions', :default => t("helpers.actions") %></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @clients.each_with_index do |client, index| %>
+        <tr class="<%= index % 2 == 0 ? 'bg-white' : 'bg-gray-50' %> border-b hover:bg-gray-100">
+          <td class="px-6 py-4"><%= client.code %></td>
+          <td class="px-6 py-4"><%= client.name %></td>
+          <td class="px-6 py-4"><%= client.id_number1 %></td>
+          <td class="px-6 py-4"><%= client.telephone %></td>
+          <td class="px-6 py-4"><%= client.city %></td>
+          <td class="px-6 py-4 flex space-x-2">
+            <%= link_to t('.show', :default => t("helpers.links.show")),
+                        client_path(client), class: 'px-2 py-1 text-xs font-medium text-white bg-yellow-500 rounded-md hover:bg-yellow-600' %>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_client_path(client), class: 'px-2 py-1 text-xs font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600' %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        client_path(client),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        class: 'px-2 py-1 text-xs font-medium text-white bg-red-500 rounded-md hover:bg-red-600' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_client_path,
-            :class => 'btn btn-primary' %>
-<%= link_to t('.print', :default => t("helpers.links.print")),
-            clients_report_clients_path(:code => @code, :name => @name, :city => @city),
-            :class => 'btn' %>			
+<div class="flex space-x-2 mb-4">
+  <%= link_to t('.new', :default => t("helpers.links.new")),
+              new_client_path,
+              class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
+  <%= link_to t('.print', :default => t("helpers.links.print")),
+              clients_report_clients_path(:code => @code, :name => @name, :city => @city),
+              class: 'bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded' %>
+</div>
 
-<%= will_paginate(@movies, :params => { :code => params[:code], :name => params[:name], :city => params[:city] } ) %>
+<div class="mt-4">
+  <%= will_paginate(@movies, :params => { :code => params[:code], :name => params[:name], :city => params[:city] }, class: "pagination") %>
+</div>
