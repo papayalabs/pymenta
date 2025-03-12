@@ -4,69 +4,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Pymenta" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Pymenta" %>">
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "devise", :media => "all" %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>   
-	<script type="text/javascript" src="http://twitter.github.io/bootstrap/assets/js/bootstrap-transition.js"></script>
-	<script type="text/javascript" src="http://twitter.github.io/bootstrap/assets/js/bootstrap-collapse.js"></script>
-	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>  
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>   
   </head>
-  <body class="<%= controller_name %> <%= action_name %>">
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
-        <div class="nav-collapse">
-	      <ul class="nav pull-left">
-		    <% if user_signed_in? %>
-			  <%= link_to "PYMENTA", root_path, :class => 'brand' %>
-		    <% else %>
-			  <%= link_to "PYMENTA", root_path, :class => 'brand' %>
-		    <% end %>
-          </ul>
-          <ul class="nav pull-right">
-            <%= render 'layouts/navigation' %>
-          </ul>
+  <body class="<%= controller_name %> <%= action_name %> bg-gray-100">
+  <div class="fixed top-0 left-0 right-0 z-10 bg-white shadow">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex">
+          <% if user_signed_in? %>
+            <%= link_to "PYMENTA", root_path, class: 'text-xl font-bold text-blue-600' %>
+          <% else %>
+            <%= link_to "PYMENTA", root_path, class: 'text-xl font-bold text-blue-600' %>
+          <% end %>
+        </div>
+        
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button type="button" class="text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" 
+                 id="mobile-menu-button">
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+        
+        <!-- Desktop menu -->
+        <div class="hidden md:flex md:items-center">
+          <%= render 'layouts/navigation' %>
+        </div>
+      </div>
+      
+      <!-- Mobile menu, show/hide based on menu state -->
+      <div class="hidden md:hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          <%= render 'layouts/navigation' %>
         </div>
       </div>
     </div>
   </div>
 
-    <div id="main" role="main">
-      <div class="container">
-        <div id="company-logo">
-          <%= render 'companies/logo' %>
-        </div>
-        <div class="content">
-           <div class="row">
-            <div class="span12">
-				<div class="navbar">
-			    	<div class="navbar-inner">
-			    		<ul class="nav">
-	                      <li><%= link_to t('.documents', :default => t("helpers.labels.documents")), documents_path %></li>
-						  <li><%= link_to t('.clients', :default => t("helpers.labels.clients")), clients_path %></li>														
-		    			  <li><%= link_to t('.providers', :default => t("helpers.labels.providers")), providers_path %></li>
-	                      <li><%= link_to t('.products', :default => t("helpers.labels.products")), products_path %></li>
-						  <li><%= link_to t('.stocks', :default => t("helpers.labels.stocks")), stocks_path %></li>
-						  <li><%= link_to t('.payments_documents', :default => t("helpers.labels.payments_documents")), payments_documents_path %></li>
-
-					</ul>
-			    	</div>
-			    </div>
-              <%= render 'layouts/messages' %>
-              <%= yield %>
-            </div>
+  <div id="main" role="main" class="pt-16">
+    <div class="container mx-auto px-4">
+      <div id="company-logo" class="my-4">
+        <%= render 'companies/logo' %>
+      </div>
+      <div class="bg-white p-5 rounded-lg shadow mb-6">
+        <div class="w-full">
+          <div class="mb-4">
+            <nav class="bg-gray-50 rounded-md p-3">
+              <ul class="flex flex-wrap gap-4">
+                <li><%= link_to t('.documents', default: t("helpers.labels.documents")), documents_path, class: 'text-gray-700 hover:text-blue-600' %></li>
+                <li><%= link_to t('.clients', default: t("helpers.labels.clients")), clients_path, class: 'text-gray-700 hover:text-blue-600' %></li>
+                <li><%= link_to t('.providers', default: t("helpers.labels.providers")), providers_path, class: 'text-gray-700 hover:text-blue-600' %></li>
+                <li><%= link_to t('.products', default: t("helpers.labels.products")), products_path, class: 'text-gray-700 hover:text-blue-600' %></li>
+                <li><%= link_to t('.stocks', default: t("helpers.labels.stocks")), stocks_path, class: 'text-gray-700 hover:text-blue-600' %></li>
+                <li><%= link_to t('.payments_documents', default: t("helpers.labels.payments_documents")), payments_documents_path, class: 'text-gray-700 hover:text-blue-600' %></li>
+              </ul>
+            </nav>
           </div>
-          <footer>
-          </footer>
+          <%= render 'layouts/messages' %>
+          <%= yield %>
         </div>
-      </div> <!--! end of .container -->
-    </div> <!--! end of #main -->
+        <footer class="mt-8 pt-4 border-t border-gray-200 text-center text-gray-500 text-sm">
+        </footer>
+      </div>
+    </div> <!-- end of .container -->
+  </div> <!-- end of #main -->
+  
+  <script>
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    });
+  </script>
   </body>
 </html>

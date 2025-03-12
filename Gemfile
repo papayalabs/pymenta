@@ -69,11 +69,8 @@ gem 'jquery-ui-rails'
 # Using React for frontend developement
 gem 'react-rails', '~> 1.5'
 
-# Using Bootstrap 2.3.2
-gem 'twitter-bootstrap-rails', '~> 3.2.0'
-gem 'bootstrap-select-rails'
-gem 'bootstrap-sass', '~> 2.3.2.0'
-gem 'bootswatch-rails' #This gem is meant to be used with bootstrap-sass. It gives you complete scss versions of bootswatches for use in your Rails asset pipeline, just like bootstrap-sass gives you scss version of bootstrap itself.
+# Using Tailwind CSS
+gem 'tailwindcss-rails'
 
 
 # Using Device and CanCan for authentication
@@ -99,7 +96,6 @@ gem 'figaro'
 
 # Using Will_Paginate as a pagination library
 gem "will_paginate", '~> 3.0'
-gem 'will_paginate-bootstrap', '~> 0.2.5'
 
 # Using Rolify as a role managment library
 gem 'rolify', '~> 5.3'

@@ -17,17 +17,17 @@
 
 });
 </script>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+<div class="mb-6 border-b pb-2">
+  <h1 class="text-3xl font-bold"><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-<div class="form-actions">
-	<div class="form-search">
+<div class="mb-6">
+	<div class="w-full">
       <div class="text-center">
-		<%= form_tag({:controller => "clients", :action => "search"}, :method => "get", :id => "clients_search", remote: true) do %>
-          <%= text_field_tag :code, params[:code],:class => 'input-small', :placeholder => (t '.code', :default =>  t("helpers.labels.code"))  %>
-          <%= text_field_tag :name, params[:name], :placeholder => (t '.name', :default =>  t("helpers.labels.name")) %>
-          <%= text_field_tag :city, params[:city], :placeholder => (t '.city', :default =>  t("helpers.labels.city")) %>
-          <%= submit_tag((t '.search', :default =>  t("helpers.labels.search")), :class => 'btn btn-danger') %>
+		<%= form_tag({:controller => "clients", :action => "search"}, :method => "get", :id => "clients_search", remote: true, class: "flex flex-wrap justify-center gap-2") do %>
+          <%= text_field_tag :code, params[:code], class: 'shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-24 md:w-auto', placeholder: (t '.code', :default =>  t("helpers.labels.code"))  %>
+          <%= text_field_tag :name, params[:name], class: 'shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full md:w-auto', placeholder: (t '.name', :default =>  t("helpers.labels.name")) %>
+          <%= text_field_tag :city, params[:city], class: 'shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full md:w-auto', placeholder: (t '.city', :default =>  t("helpers.labels.city")) %>
+          <%= submit_tag((t '.search', :default =>  t("helpers.labels.search")), class: 'bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline') %>
         <% end %>
 	  </div>
 	</div>

@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
-//= require bootstrap
+//= require jquery.easing.min
 //= require react
 //= require react_ujs
 //= require components

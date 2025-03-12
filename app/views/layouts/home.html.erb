@@ -6,102 +6,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Pymenta" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Pymenta" %>">
-    <%= stylesheet_link_tag "bootstrap3", :media => "all" %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "home", :media => "all" %>
     <%= javascript_include_tag 'jquery.easing.min' %>
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>   
-	<script type="text/javascript" src="http://twitter.github.io/bootstrap/assets/js/bootstrap-transition.js"></script>
-	<script type="text/javascript" src="http://twitter.github.io/bootstrap/assets/js/bootstrap-collapse.js"></script>
-	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
-	<link href="http://vjs.zencdn.net/4.12/video-js.css" rel="stylesheet">
-	<script src="http://vjs.zencdn.net/4.12/video.js"></script>
-
-    <!-- Core JavaScript Files -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>   
+    <link href="http://vjs.zencdn.net/4.12/video-js.css" rel="stylesheet">
+    <script src="http://vjs.zencdn.net/4.12/video.js"></script>
 
     <!-- Fonts -->
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-	<!-- iPad and iPad mini (with @2× display) iOS ≥ 8 -->
-	<link rel="apple-touch-icon-precomposed" sizes="180x180" href="assets/ios/AppIcon.appiconset/Icon-App-60x60@3x.png">
-	<!-- iPad 3+ (with @2× display) iOS ≥ 7 -->
-	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="assets/ios/AppIcon.appiconset/Icon-App-76x76@2x.png">
-	<!-- iPad (with @2× display) iOS ≤ 6 -->
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ios/AppIcon.appiconset/Icon-App-72x72@2x.png">
-	<!-- iPhone (with @2× and @3 display) iOS ≥ 7 -->
-	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="assets/ios/AppIcon.appiconset/Icon-App-60x60@2x.png">
-	<!-- iPhone (with @2× display) iOS ≤ 6 -->
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ios/AppIcon.appiconset/Icon-App-57x57@2x.png">
-	<!-- iPad mini and the first- and second-generation iPad (@1× display) on iOS ≥ 7 -->
-	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="assets/ios/AppIcon.appiconset/Icon-App-76x76@1x.png">
-	<!-- iPad mini and the first- and second-generation iPad (@1× display) on iOS ≤ 6 -->
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ios/AppIcon.appiconset/Icon-App-72x72@1x.png">
-	<!-- Android Stock Browser and non-Retina iPhone and iPod Touch -->
-	<link rel="apple-touch-icon-precomposed" href="assets/ios/AppIcon.appiconset/Icon-App-57x57@1x.png">		
+    <!-- iPad and iPad mini (with @2× display) iOS ≥ 8 -->
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="assets/ios/AppIcon.appiconset/Icon-App-60x60@3x.png">
+    <!-- iPad 3+ (with @2× display) iOS ≥ 7 -->
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="assets/ios/AppIcon.appiconset/Icon-App-76x76@2x.png">
+    <!-- iPad (with @2× display) iOS ≤ 6 -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ios/AppIcon.appiconset/Icon-App-72x72@2x.png">
+    <!-- iPhone (with @2× and @3 display) iOS ≥ 7 -->
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="assets/ios/AppIcon.appiconset/Icon-App-60x60@2x.png">
+    <!-- iPhone (with @2× display) iOS ≤ 6 -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ios/AppIcon.appiconset/Icon-App-57x57@2x.png">
+    <!-- iPad mini and the first- and second-generation iPad (@1× display) on iOS ≥ 7 -->
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="assets/ios/AppIcon.appiconset/Icon-App-76x76@1x.png">
+    <!-- iPad mini and the first- and second-generation iPad (@1× display) on iOS ≤ 6 -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ios/AppIcon.appiconset/Icon-App-72x72@1x.png">
+    <!-- Android Stock Browser and non-Retina iPhone and iPod Touch -->
+    <link rel="apple-touch-icon-precomposed" href="assets/ios/AppIcon.appiconset/Icon-App-57x57@1x.png">        
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
-
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <div class="container">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-	        <div class="nav-collapse">
-		      <ul class="nav pull-left">
-                <a class="brand" href="#page-top">PYMENTA</a>
-	          </ul>
-	        </div>	
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li class="page-scroll">          
-                        <a href="#about"><%=t '.ourproduct' %></a>
-                    </li>
-                   <li class="page-scroll">          
-                        <a href="#tour"><%=t '.tour' %></a>
-                    </li>
-                   <li class="page-scroll">          
-                        <a href="#pricing"><%=t '.prices' %></a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#contact"><%=t '.contact' %></a>
-                    </li>
-                    <li class="page-scroll">
-                        <li><%= link_to t("helpers.links.sign_in"), new_user_session_path %></li>
-                    </li>
-                    <li class="page-scroll">
-	                   <%= link_to t("helpers.links.sign_up"), new_user_registration_path , :class=>"btn btn-default" %>
-                    </li>
-                </ul>
+<body id="page-top" class="bg-white">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-gray-900 shadow">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div>
+                    <a class="text-3xl font-bold text-white" href="#page-top">PYMENTA</a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" type="button" class="text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Desktop menu -->
+                <div class="hidden md:flex md:items-center md:space-x-4">
+                    <a class="text-gray-300 hover:text-white px-3 py-2" href="#about"><%=t '.ourproduct' %></a>
+                    <a class="text-gray-300 hover:text-white px-3 py-2" href="#tour"><%=t '.tour' %></a>
+                    <a class="text-gray-300 hover:text-white px-3 py-2" href="#pricing"><%=t '.prices' %></a>
+                    <a class="text-gray-300 hover:text-white px-3 py-2" href="#contact"><%=t '.contact' %></a>
+                    <%= link_to t("helpers.links.sign_in"), new_user_session_path, class: "text-gray-300 hover:text-white px-3 py-2" %>
+                    <%= link_to t("helpers.links.sign_up"), new_user_registration_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+                </div>
             </div>
-            <!-- /.navbar-collapse -->
+            
+            <!-- Mobile menu, hidden by default -->
+            <div id="mobile-menu" class="hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="#about"><%=t '.ourproduct' %></a>
+                    <a class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="#tour"><%=t '.tour' %></a>
+                    <a class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="#pricing"><%=t '.prices' %></a>
+                    <a class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="#contact"><%=t '.contact' %></a>
+                    <%= link_to t("helpers.links.sign_in"), new_user_session_path, class: "text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium" %>
+                    <%= link_to t("helpers.links.sign_up"), new_user_registration_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded block w-full text-center" %>
+                </div>
+            </div>
         </div>
-        <!-- /.container -->
     </nav>
 
     <section class="intro">
         <div class="intro-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-	                    <% if flash[:notice] %>
-                          <h1><%= flash[:notice] %></h1>
+            <div class="container mx-auto px-4">
+                <div class="flex justify-center">
+                    <div class="md:w-2/3 text-center">
+                        <% if flash[:notice] %>
+                          <h1 class="text-4xl font-bold text-white"><%= flash[:notice] %></h1>
                         <% end %>
-                        <h1><%=t '.title' %></h1>
-                        <p class="intro-text"><%=t '.title2' %></p>
-                        <div class="page-scroll">
-                            <a href="#about" class="btn btn-circle">
-                                <%= image_tag("arrow.png", class: "img-responsive") %>
+                        <h1 class="text-4xl font-bold text-white"><%=t '.title' %></h1>
+                        <p class="text-xl text-white"><%=t '.title2' %></p>
+                        <div class="mt-8">
+                            <a href="#about" class="inline-block rounded-full bg-white p-3 hover:bg-gray-200">
+                                <%= image_tag("arrow.png", class: "h-6 w-6") %>
                             </a>
                         </div>
                     </div>
@@ -110,190 +101,195 @@
         </div>
     </section>
 
-    <section id="about" class="container content-section text-center">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-				  <h2><%=t '.ourproduct' %></h2>      
-                  <p class="lead"><%=t '.description', :default => 'Pymenta is a very simple Rails Cloud ERP System created for small companies to create, manage and print documents ( invoices, notes, quotations, credits, etc). You can manage warehouses, providers and clients. Also products and stock. Print Statistic Reports.
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center">
+                <div class="lg:w-2/3 text-center">
+                      <h2 class="text-3xl font-bold mb-6"><%=t '.ourproduct' %></h2>      
+                      <p class="text-xl mb-6"><%=t '.description', :default => 'Pymenta is a very simple Rails Cloud ERP System created for small companies to create, manage and print documents ( invoices, notes, quotations, credits, etc). You can manage warehouses, providers and clients. Also products and stock. Print Statistic Reports.
 
-This application is released as an open source project for educational purposes. Uses Rails 5, React, Boostrap, Device, Simple_Form, Prawn, PaperClip and ActiveAdmin.' %></p>
-                  <%= link_to t("helpers.links.sign_up"), new_user_registration_path , :class=>"btn btn-danger btn-lg" %>
-			  </br>
-			  </br>
-			  </br>			  			  
-				  <%= link_to image_tag("github.png"), "https://github.com/papayalabs/pymenta" %>
-            </div>
-        </div>
-    </section>
-
-
-		<section id="tour" class="content-section text-center">	
-		  <div class="tour-section">	
-		  <div class="wet-asphalt-video">
-	        <div class="container">
-				<div class="row mt centered">
-					<div class="col-lg-6 col-lg-offset-3">
-	                    <h1><%= t('.tour', :default => t("layouts.home.tour")) %></h1>
-					</div>
-					</br>
-					</br>
-				    </br>
-				    </br>
-				    <%= video_tag "Tour.mp4", :class => "video-js vjs-default-skin",:size => "1164x628", :controls => true, :autobuffer => true %>
-				</div>
-	        </div>
-	      </div>
-	      </div>	
-		</section>
-		
-		<section id="pricing" class="content-section text-center">
-		  <div class="container">
-			<div class="row">
-				<div class="col-lg-10 col-lg-offset-1">
-					<h1><%= t('.prices', :default => t("layouts.home.prices")) %></h1>
-					</br>
-					</br>
-	                <div id="pricing-table" class="row">
-	                    <div class="col-sm-12">
-	                        <ul class="plan">
-	                            <li class="plan-name"><%= t('.free', :default => t("layouts.home.free")) %></li>
-	                            <li class="plan-price"><%= t('.free', :default => t("layouts.home.free")) %></li>
-	                            <li><%= t('.unlimited-invoices', :default => t("layouts.home.unlimited-invoices")) %></li>
-	                            <li><%= t('.unlimited-providers', :default => t("layouts.home.unlimited-providers")) %></li>
-	                            <li><%= t('.free-retentions', :default => t("layouts.home.free-retentions")) %></li>
-	                            <li class="plan-action"><%= link_to t("helpers.links.sign_up"), new_user_registration_path , :class=>"btn btn-primary btn-lg" %></li>
-	                        </ul>
-	                    </div>
-<!--						
-	                    <div class="col-sm-6">
-	                        <ul class="plan">
-	                            <li class="plan-name"><%= t('.paid', :default => t("layouts.home.paid")) %></li>
-	                            <li class="plan-price"><%= t('.month-price', :default => t("layouts.home.month-price")) %></li>
-	                            <li class="plan-price-year"><%= t('.year-price', :default => t("layouts.home.year-price")) %></li>
-	                            <li><%= t('.unlimited-invoices', :default => t("layouts.home.unlimited-invoices")) %></li>
-	                            <li><%= t('.unlimited-providers', :default => t("layouts.home.unlimited-providers")) %></li>
-	                            <li><%= t('.unlimited-retentions', :default => t("layouts.home.unlimited-retentions")) %></li>
-	                            <li class="plan-action"><%= link_to t("helpers.links.sign_up"), new_user_registration_path , :class=>"btn btn-primary btn-lg" %></li>
-	                        </ul>
-	                    </div>
-	                </div> 
--->						
-	            </div>
-			</div>
-		  </div>
-		</section><!--/#pricing-->
-		
-    <section id="contact" class="content-section text-center">
-        <div class="download-section">
-            <div class="container">
-                <div class="col-lg-8 col-lg-offset-2">
-	                <h2><%=t '.contact' %></h2>
-	                <p><%=t '.contact_description' %></p>
-	                <p><%=t '.email' %></p>
-	                <ul class="list-inline banner-social-buttons">
-	                    <li><a href="https://twitter.com/papayalabs" class="btn btn-danger"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-	                    </li>
-	                    <li><a href="https://github.com/papayalabs" class="btn btn-info"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-	                    </li>
-	                    <li><a href="https://facebook.com" class="btn btn-primary"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
-	                    </li>
+This application is released as an open source project for educational purposes. Uses Rails 5, React, Tailwind CSS, Device, Simple_Form, Prawn, PaperClip and ActiveAdmin.' %></p>
+                      <%= link_to t("helpers.links.sign_up"), new_user_registration_path, class: "bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded text-lg" %>
+                      <div class="mt-12">
+                          <%= link_to image_tag("github.png"), "https://github.com/papayalabs/pymenta" %>
+                      </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- div id="map"></div -->
-	    <div class="wet-asphalt">
-	        <div class="container">
-<!--
-	            <div class="row">
-	                <div class="col-sm-12">
-	                    <b><%= t('.madewith', :default => t("layouts.home.madewith")) %></b> <%= image_tag("heart-icon.png", width: "24", alt: "") %> <b><%= t('.invenezuela', :default => t("layouts.home.invenezuela")) %></b>
-	                </div>
-	            </div>
--->
-	            <div class="row">
-	                <div class="col-sm-6">
-	                    <%= t('.copyright', :default => t("layouts.home.copyright")) %><a target="_blank" href="http://papayalabs.github.io" title="Lapapaya"><%= t('.companyname', :default => t("layouts.home.companyname")) %>
-	</a>. <%= t('.allrightreserved', :default => t("layouts.home.allrightreserved")) %>
-	                </div>
-	                <div class="col-sm-6">
-	                  <ul class="nav navbar-nav navbar-right">
-	                    <li><%= link_to t('.termsofservice', :default => t("helpers.home.termsofservice")), terms_path, :class => 'decorated_link'  %></li>
-	                    <li><%= link_to t('.privacypolicy', :default => t("helpers.home.privacypolicy")), privacy_path, :class => 'decorated_link'  %></li>
-	                  </ul>
-	                </div>
-	            </div>
-	        </div>
-	    </div><!--/#footer-->
-    <!-- Google Maps API Key - You will need to use your own API key to use the map feature -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-	<script>
-		(function(vjs) {
-		  var
-		    /**
-		     * Copies properties from one or more objects onto an original.
-		     */
-		    extend = function(obj /*, arg1, arg2, ... */) {
-		      var arg, i, k;
-		      for (i = 1; i < arguments.length; i++) {
-		        arg = arguments[i];
-		        for (k in arg) {
-		          if (arg.hasOwnProperty(k)) {
-		            obj[k] = arg[k];
-		          }
-		        }
-		      }
-		      return obj;
-		    },
-		    // define some reasonable defaults for this sweet plugin
-		    defaults = {
-		      autoDisable: false
-		    },
-		    // plugin initializer
-		    disableProgress = function(options) {
-		      var
-		        // save a reference to the player instance
-		        player = this,
-		        state = false,
-		        // merge options and defaults
-		        settings = extend({}, defaults, options || {});
-		      // disable / enable methods
-		      player.disableProgress = {
-		        disable: function() {
-		            state = true;
-		            player.controlBar.progressControl.seekBar.hide();
-		        },
-		        enable: function() {
-		            state = false;
-		        },
-		        getState: function(){
-		          return state;
-		        }
-		      };
-		      if(settings.autoDisable)
-		      {
-		        player.disableProgress.disable();
-		      }
-		    };
-		  // register the plugin with video.js
-		  vjs.plugin('disableProgress', disableProgress);
-		}(window.videojs));
-		var
-		  // save a reference to the video element
-		  video = document.querySelector('video'),
-		  // save a reference to the video.js player for that element
-		  player = videojs(video);
-		  // Here is where you initialize the plugin, passing in autoDisable
-		  // autoDisable: true ==> The ProgressBar is hide
-		  // autoDisable: false ==> The ProgressBar work normally
-		  player.disableProgress({
-		    autoDisable: true
-		  });
-	</script>
-     <%= javascript_include_tag 'application' %>
+    <section id="tour" class="py-20 bg-gray-100">    
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center">
+                <div class="lg:w-2/3 text-center">
+                    <h1 class="text-3xl font-bold mb-12"><%= t('.tour', :default => t("layouts.home.tour")) %></h1>
+                    <%= video_tag "Tour.mp4", class: "video-js vjs-default-skin mx-auto", size: "1164x628", controls: true, autobuffer: true %>
+                </div>
+            </div>
+        </div>
+    </section>
+        
+    <section id="pricing" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center">
+                <div class="lg:w-2/3 text-center">
+                    <h1 class="text-3xl font-bold mb-12"><%= t('.prices', :default => t("layouts.home.prices")) %></h1>
+                    <div class="max-w-md mx-auto">
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                            <div class="bg-blue-500 text-white text-center py-4">
+                                <h2 class="text-2xl font-bold"><%= t('.free', :default => t("layouts.home.free")) %></h2>
+                            </div>
+                            <div class="py-8 px-6">
+                                <div class="text-center">
+                                    <span class="text-4xl font-bold"><%= t('.free', :default => t("layouts.home.free")) %></span>
+                                </div>
+                                <ul class="mt-8 space-y-4">
+                                    <li class="flex items-center">
+                                        <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                        <span class="ml-3"><%= t('.unlimited-invoices', :default => t("layouts.home.unlimited-invoices")) %></span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                        <span class="ml-3"><%= t('.unlimited-providers', :default => t("layouts.home.unlimited-providers")) %></span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                        <span class="ml-3"><%= t('.free-retentions', :default => t("layouts.home.free-retentions")) %></span>
+                                    </li>
+                                </ul>
+                                <div class="mt-8">
+                                    <%= link_to t("helpers.links.sign_up"), new_user_registration_path, class: "w-full block text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        
+    <section id="contact" class="py-20 bg-gray-800 text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center">
+                <div class="lg:w-2/3 text-center">
+                    <h2 class="text-3xl font-bold mb-6"><%=t '.contact' %></h2>
+                    <p class="text-xl mb-4"><%=t '.contact_description' %></p>
+                    <p class="text-xl mb-8"><%=t '.email' %></p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="https://twitter.com/papayalabs" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                            <i class="fa fa-twitter fa-fw"></i> <span>Twitter</span>
+                        </a>
+                        <a href="https://github.com/papayalabs" class="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
+                            <i class="fa fa-github fa-fw"></i> <span>Github</span>
+                        </a>
+                        <a href="https://facebook.com" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            <i class="fa fa-facebook fa-fw"></i> <span>Facebook</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-4 md:mb-0">
+                    <%= t('.copyright', :default => t("layouts.home.copyright")) %><a target="_blank" href="http://papayalabs.github.io" title="Lapapaya" class="text-blue-400 hover:text-blue-300"><%= t('.companyname', :default => t("layouts.home.companyname")) %>
+                    </a>. <%= t('.allrightreserved', :default => t("layouts.home.allrightreserved")) %>
+                </div>
+                <div>
+                    <ul class="flex space-x-4">
+                        <li><%= link_to t('.termsofservice', :default => t("helpers.home.termsofservice")), terms_path, class: 'text-gray-300 hover:text-white'  %></li>
+                        <li><%= link_to t('.privacypolicy', :default => t("helpers.home.privacypolicy")), privacy_path, class: 'text-gray-300 hover:text-white'  %></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+    
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Video.js plugin
+        (function(vjs) {
+          var
+            /**
+             * Copies properties from one or more objects onto an original.
+             */
+            extend = function(obj /*, arg1, arg2, ... */) {
+              var arg, i, k;
+              for (i = 1; i < arguments.length; i++) {
+                arg = arguments[i];
+                for (k in arg) {
+                  if (arg.hasOwnProperty(k)) {
+                    obj[k] = arg[k];
+                  }
+                }
+              }
+              return obj;
+            },
+            // define some reasonable defaults for this sweet plugin
+            defaults = {
+              autoDisable: false
+            },
+            // plugin initializer
+            disableProgress = function(options) {
+              var
+                // save a reference to the player instance
+                player = this,
+                state = false,
+                // merge options and defaults
+                settings = extend({}, defaults, options || {});
+              // disable / enable methods
+              player.disableProgress = {
+                disable: function() {
+                    state = true;
+                    player.controlBar.progressControl.seekBar.hide();
+                },
+                enable: function() {
+                    state = false;
+                },
+                getState: function(){
+                  return state;
+                }
+              };
+              if(settings.autoDisable)
+              {
+                player.disableProgress.disable();
+              }
+            };
+          // register the plugin with video.js
+          vjs.plugin('disableProgress', disableProgress);
+        }(window.videojs));
+        
+        var
+          // save a reference to the video element
+          video = document.querySelector('video'),
+          // save a reference to the video.js player for that element
+          player = videojs(video);
+          // Here is where you initialize the plugin, passing in autoDisable
+          // autoDisable: true ==> The ProgressBar is hide
+          // autoDisable: false ==> The ProgressBar work normally
+          player.disableProgress({
+            autoDisable: true
+          });
+    </script>
+    
+    <%= javascript_include_tag 'application' %>
 </body>
 
 </html>
