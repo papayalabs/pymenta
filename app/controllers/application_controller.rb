@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_action :set_locale
+  if Rails.env.development?
+    skip_forgery_protection
+  end
 
   def index
      redirect_to companies_path
