@@ -21,5 +21,6 @@ module Pymenta
     config.react.addons = true
     config.limit = 15
     config.hosts.clear
+    config.assets.precompile += %w(*.jsx *.js)
   end
 end

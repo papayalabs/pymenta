@@ -1,4 +1,4 @@
-<%= react_component 'DocumentTypes',
+<%= javascript_include_tag 'document_types.jsx',
                     {
                         data: current_user.company.document_types,
                         page_header: t('.title', :default => DocumentType.model_name.human.pluralize.titleize),
@@ -9,7 +9,7 @@
                         }
                     } %>
 
-<%= react_component 'PaymentTypes',
+<%= javascript_include_tag 'payment_types.jsx',
                     {
                         data: current_user.company.payment_types,
                         page_header: t('.title', :default => PaymentType.model_name.human.pluralize.titleize),
@@ -17,7 +17,7 @@
                         }
                     } %>
 
-<%= react_component 'Warehouses',
+<%= javascript_include_tag 'warehouses.jsx',
                     {
                         data: Account.where("domain = ? AND type = ?", current_user.domain, "Warehouse"),
                         page_header: t('.title', :default => Warehouse.model_name.human.pluralize.titleize),
@@ -25,7 +25,7 @@
                         }
                     } %>
 
-<%= react_component 'Categories',
+<%= javascript_include_tag 'categories.jsx',
                     {
                         data: current_user.company.categories,
                         page_header: t('.title', :default => Category.model_name.human.pluralize.titleize),
@@ -33,7 +33,7 @@
                         }
                     } %>
 
-<%= react_component 'Brands',
+<%= javascript_include_tag 'brands.jsx',
                     {
                         data: current_user.company.brands,
                         page_header: t('.title', :default => Brand.model_name.human.pluralize.titleize),
