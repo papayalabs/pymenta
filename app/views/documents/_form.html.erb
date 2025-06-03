@@ -1,10 +1,98 @@
-<%= simple_form_for @document, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @document, :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
   <div class="form-actions">
     <%= label_tag(:type, (t '.type', :default =>  t("helpers.labels.document_type") ) ) %><%= f.collection_select :document_type_id, current_user.company.document_types, :id, :description %>
   </div>
   <%= f.input :document_number %>
   <%= f.input :date %>
   <%= f.input :details %>
+  
+  <div class="control-group">
+    <%= f.label :attach, :class => 'control-label' %>
+    <div class="controls">
+      <div id="dropzone" class="dropzone">
+        <p>Drag and drop your file here or click to upload</p>
+        <%= f.file_field :attach, id: 'file-upload', style: 'display: none;' %>
+        <div id="file-names"></div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #dropzone {
+      border: 2px dashed #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      background-color: #f9f9f9;
+    }
+
+    #dropzone.dragover {
+      border-color: #007bff;
+      background-color: #e9f5ff;
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const dropzone = document.getElementById('dropzone');
+      const fileInput = document.getElementById('file-upload');
+      const fileNames = document.getElementById('file-names');
+
+      dropzone.addEventListener('click', () => {
+        fileInput.click();
+      });
+
+      dropzone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropzone.classList.add('dragover');
+      });
+
+      dropzone.addEventListener('dragleave', () => {
+        dropzone.classList.remove('dragover');
+      });
+
+      dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('dragover');
+        const files = e.dataTransfer.files;
+
+        // Create a DataTransfer object to update the file input
+        const dataTransfer = new DataTransfer();
+        for (let i = 0; i < files.length; i++) {
+          dataTransfer.items.add(files[i]);
+        }
+        fileInput.files = dataTransfer.files;
+
+        // Trigger change event on file input
+        const event = new Event('change', { bubbles: true });
+        fileInput.dispatchEvent(event);
+
+        // Display the file names in the file-names div
+        let html = '<p>Files:</p><ul>';
+        for (let i = 0; i < files.length; i++) {
+          html += `<li>${files[i].name}</li>`;
+        }
+        html += '</ul>';
+        fileNames.innerHTML = html;
+      });
+
+      // Also update file-names when file input changes (for click upload)
+      fileInput.addEventListener('change', function() {
+        const files = fileInput.files;
+        let html = '';
+        if (files.length > 0) {
+          html = '<p>Files:</p><ul>';
+          for (let i = 0; i < files.length; i++) {
+            html += `<li>${files[i].name}</li>`;
+          }
+          html += '</ul>';
+        }
+        fileNames.innerHTML = html;
+      });
+    });
+  </script>
+  
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary', :data => {:disable_with =>  t('.saving', :default => t("helpers.labels.saving"))} %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

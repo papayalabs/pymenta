@@ -65,8 +65,6 @@ class DocumentsController < ApplicationController
   # PUT /documents/1
   # PUT /documents/1.json
   def update
-    params[:document][:version] = ENV["VERSION"]
-    params[:document][:username] = current_user.username
     @document = Document.find(params[:id])
 
     respond_to do |format|
@@ -141,7 +139,7 @@ class DocumentsController < ApplicationController
       elsif(account_type=='Warehouse')
            account = Warehouse.find(params[:autocomplete_warehouse])           
       end
-    rescue ActiveRecord::RecordNotFound => e
+    rescue ActiveRecord::RecordNotFound
       account = nil
     end
 
@@ -158,7 +156,7 @@ class DocumentsController < ApplicationController
 
 
 
-    def create_document(account) 
+  def create_document(account) 
 
 
       params[:document][:version] = ENV["VERSION"]
@@ -242,6 +240,6 @@ class DocumentsController < ApplicationController
      # Never trust parameters from the scary internet, only allow the white list through.
      def document_params
        params.require(:document).permit(:code, :date, :discount_percentage, :discount_total, :document_number, :domain, :due, :expire_date, :id, :month, :paid, :paid_left,
-   :status, :sub_total, :tax, :tax_total, :total, :type, :username, :version, :year, :account_id, :warehouse_id, :document_type_id, :details, :control_number, :retention, :retention_total)
+        :status, :sub_total, :tax, :tax_total, :total, :type, :username, :version, :year, :account_id, :warehouse_id, :document_type_id, :details, :control_number, :retention, :retention_total, :attach)
      end
 end

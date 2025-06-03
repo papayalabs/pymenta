@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2019_02_13_093216) do
+ActiveRecord::Schema[7.0].define(version: 2025_06_03_131828) do
   create_table "accounts", id: false, charset: "utf8mb3", force: :cascade do |t|
     t.string "id", limit: 36
     t.string "version"
@@ -147,9 +147,9 @@ ActiveRecord::Schema[7.0].define(version: 2019_02_13_093216) do
     t.string "product_id"
     t.string "warehouse_id"
     t.string "stock_id"
-    t.string "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "notes"
   end
 
   create_table "document_types", id: false, charset: "utf8mb3", force: :cascade do |t|
@@ -196,6 +196,10 @@ ActiveRecord::Schema[7.0].define(version: 2019_02_13_093216) do
     t.datetime "updated_at", null: false
     t.decimal "retention", precision: 10, scale: 2, default: "0.0"
     t.decimal "retention_total", precision: 10, scale: 2, default: "0.0"
+    t.string "attach_file_name"
+    t.string "attach_content_type"
+    t.integer "attach_file_size"
+    t.datetime "attach_updated_at"
   end
 
   create_table "payment_types", id: false, charset: "utf8mb3", force: :cascade do |t|

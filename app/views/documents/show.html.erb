@@ -37,6 +37,19 @@
       <dt><strong><%=t '.details', :default =>  t("helpers.labels.details") %></strong></dt>
       <dd><%= @document.details %></dd>  
     </dl>
+    <!-- Display document attachment if present -->
+    <% if @document.attach.present? %>
+      <dl class="dl-horizontal">
+        <dt><strong><%=t '.attachment', :default =>  t("helpers.labels.attachment") %></strong></dt>
+        <dd>
+          <% if @document.attach_content_type =~ /^image\// %>
+            <%= link_to image_tag(@document.attach.url(:thumb), alt: "Attachment"), @document.attach.url, target: "_blank" %>
+          <% else %>
+            <%= link_to File.basename(@document.attach_file_name), @document.attach.url, target: "_blank" %>
+          <% end %>
+        </dd>
+      </dl>
+    <% end %>
   </div>
   <div class="span6">
     <dl class="dl-horizontal">

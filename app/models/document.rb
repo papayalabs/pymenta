@@ -9,6 +9,21 @@ class Document < ApplicationRecord
   belongs_to :payments_document, optional: true
 
   has_many :document_lines, :foreign_key => 'header_id'
+  
+  # Add Paperclip attachment
+  has_attached_file :attach, 
+                    styles: { medium: "300x300>", thumb: "100x100>" },
+                    default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :attach, content_type: [
+    "image/jpeg", 
+    "image/gif", 
+    "image/png", 
+    "application/pdf",
+    "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "application/vnd.ms-excel",
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  ]
 
   before_validation :ensure_counter_is_not_greater_than_limit, :on => :create
   before_create :increment_counter, :default_values 

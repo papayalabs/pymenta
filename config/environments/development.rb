@@ -86,18 +86,6 @@ Rails.application.configure do
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.perform_caching = false
   
-  config.paperclip_defaults = {
-    :storage => :s3,
-    :s3_region => 'us-east-2',
-    :bucket => 'pymenta',
-    :s3_protocol => :https,
-    :s3_host_name => "",
-    :s3_options => {
-      :endpoint => "https://s3-us-east-2.amazonaws.com",
-    },
-    :s3_credentials => "#{Rails.root}/config/aws.yml"
-  }
-  
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
