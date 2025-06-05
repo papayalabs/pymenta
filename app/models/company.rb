@@ -30,7 +30,7 @@ class Company < ApplicationRecord
       thumb: '100x100>',
       square: '500x200>',
       medium: '300x300>'
-    }, :url => '/:class/:attachment/:id/:style_:basename.:extension'
+    }, :url => '/system/:class/:attachment/:id/:style/:filename'
 
 # Validate content type
   validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/

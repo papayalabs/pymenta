@@ -85,6 +85,17 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.perform_caching = false
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_region => Rails.application.secrets.s3_region,
+    :bucket => Rails.application.secrets.bucket,
+    :s3_protocol => :https,
+    :s3_host_name => Rails.application.secrets.s3_host_name,
+    :s3_options => {
+      :endpoint => Rails.application.secrets.endpoint,
+    },
+    :s3_credentials => "#{Rails.root}/config/aws.yml"
+  }
   
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",

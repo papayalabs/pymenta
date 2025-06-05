@@ -13,7 +13,8 @@ class Document < ApplicationRecord
   # Add Paperclip attachment
   has_attached_file :attach, 
                     styles: { medium: "300x300>", thumb: "100x100>" },
-                    default_url: "/images/:style/missing.png"
+                    default_url: "missing.png",
+                    :url    => "/system/:class/attachments/:id/:style/:filename"
   validates_attachment_content_type :attach, content_type: [
     "image/jpeg", 
     "image/gif", 
