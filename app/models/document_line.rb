@@ -27,20 +27,22 @@ class DocumentLine < ApplicationRecord
     total = (out_quantity+in_quantity)*price
     description = product.description
     code = product.code
+    tax_rate = product.custom_tax.nil? ? document.tax : product.custom_tax
     document.sub_total = document.sub_total + total
-    document.tax_total = document.tax_total + (total*document.tax/100)
+    document.tax_total = document.tax_total + (total*tax_rate/100)
     document.retention_total = document.retention_total + (total*document.retention/100)
     document.total = document.sub_total + document.tax_total - document.retention_total
-    document.paid_left = document.paid_left + total + (total*document.tax/100) + (total*document.retention/100)
+    document.paid_left = document.paid_left + total + (total*tax_rate/100) + (total*document.retention/100)
     document.save
   end
 
   def substract_totals
+    tax_rate = product.custom_tax.nil? ? document.tax : product.custom_tax
     document.sub_total = document.sub_total - total
-    document.tax_total = document.tax_total - (total*document.tax/100)
+    document.tax_total = document.tax_total - (total*tax_rate/100)
     document.retention_total = document.retention_total - (total*document.retention/100)
     document.total = document.sub_total + document.tax_total
-    document.paid_left = document.paid_left - total - (total*document.tax/100) - (total*document.retention/100)
+    document.paid_left = document.paid_left - total - (total*tax_rate/100) - (total*document.retention/100)
     document.save
   end
   

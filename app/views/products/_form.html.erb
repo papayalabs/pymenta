@@ -11,6 +11,7 @@
   <%= f.input :units, collection: Product::UNIT_TYPES, prompt: t('.select', :default => t("helpers.links.select")) %>
   <%= f.input :price %>
   <%= f.input :cost %>
+  <%= f.input :custom_tax, label: 'Custom Tax (%)' %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
