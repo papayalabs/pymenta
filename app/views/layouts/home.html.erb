@@ -12,10 +12,13 @@
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>   
-	<script type="text/javascript" src="http://twitter.github.io/bootstrap/assets/js/bootstrap-transition.js"></script>
-	<script type="text/javascript" src="http://twitter.github.io/bootstrap/assets/js/bootstrap-collapse.js"></script>
-	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <!-- Remove direct CDN includes for jQuery and Bootstrap -->
+    <%# 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>   
+    <script type="text/javascript" src="http://twitter.github.io/bootstrap/assets/js/bootstrap-transition.js"></script>
+    <script type="text/javascript" src="http://twitter.github.io/bootstrap/assets/js/bootstrap-collapse.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    %>
 	<link href="http://vjs.zencdn.net/4.12/video-js.css" rel="stylesheet">
 	<script src="http://vjs.zencdn.net/4.12/video.js"></script>
 
@@ -228,8 +231,6 @@ This application is released as an open source project for educational purposes.
 	    </div><!--/#footer-->
     <!-- Google Maps API Key - You will need to use your own API key to use the map feature -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 	<script>
 		(function(vjs) {
 		  var
@@ -294,6 +295,11 @@ This application is released as an open source project for educational purposes.
 		  });
 	</script>
      <%= javascript_include_tag 'application' %>
+     <script>
+       // Disable Turbolinks for all links in this layout
+       document.querySelectorAll('a').forEach(function(link) {
+         link.setAttribute('data-turbolinks', 'false');
+       });
+     </script>
 </body>
-
 </html>
