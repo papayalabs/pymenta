@@ -94,12 +94,12 @@ Rails.application.configure do
    # Configuration for Paper Clip
    config.paperclip_defaults = {
     :storage => :s3,
-    :s3_region => 'us-east-2',
-    :bucket => 'pymenta',
+    :s3_region => Rails.application.secrets.s3_region,
+    :bucket => Rails.application.secrets.bucket,
     :s3_protocol => :https,
-    :s3_host_name => "",
+    :s3_host_name => Rails.application.secrets.s3_host_name,
     :s3_options => {
-      :endpoint => "https://s3-us-east-2.amazonaws.com",
+      :endpoint => Rails.application.secrets.endpoint,
     },
     :s3_credentials => "#{Rails.root}/config/aws.yml"
   }
