@@ -92,5 +92,8 @@ Rails.application.routes.draw do
     
     get '/service_payments/subscribe_month' => 'service_payments#subscribe_month', :as => :subscribe_month 
     get '/service_payments/subscribe_year' => 'service_payments#subscribe_year', :as => :subscribe_year
+
+    post '/documents/save_public_search' => 'documents#save_public_search', as: :save_public_search_documents
+    get '/documents/public_search/:token' => 'documents#public_search', as: :public_search_documents
   end
 end

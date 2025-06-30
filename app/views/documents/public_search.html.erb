@@ -1,3 +1,4 @@
+<h2><%= t('helpers.titles.public_search_results', default: 'Public Search Results') %></h2>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -24,17 +25,8 @@
          <%= display_status document.status %>
         <% end %>
         <td>
-          <%= link_to t('.show', :default => t("helpers.links.show")),
-                      document_path(document), :class => 'btn btn-mini btn-warning' %>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_document_path(document), :class => 'btn btn-mini btn-primary' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      document_path(document),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
           <%= link_to t('.print', :default => t("helpers.links.print")),
-                      document_report_documents_path(document),
+                      document_report_documents_path(document, :company => document.domain),
                       :class => 'btn btn-mini btn-info',
                       :target => '_blank' %>
           <% if document.attach.present? %>
@@ -55,27 +47,5 @@
 </table>
 
 <%= link_to t('.print', :default => t("helpers.links.print")),
-            documents_report_documents_path(:start_at => @start_at, :end_at => @end_at, :name => @name, :status => @status, :type => @type),
+            documents_report_documents_path(:start_at => @start_at, :end_at => @end_at, :name => @name, :status => @status, :type => @document_type, :company => @documents.first.domain),
             :class => 'btn' %>
-
-<%= button_to t('.public_print', default: t('helpers.links.public_print', default: 'Public Print')),
-              save_public_search_documents_path,
-              method: :post,
-              params: { start_at: @start_at, end_at: @end_at, name: @name, status: @status, document_type: @type },
-              class: 'btn btn-info',
-              form: { data: { turbo: false } } %>
-
-<% if defined?(@public_searches) && @public_searches.present? %>
-  <div class="public-search-list">
-    <h4><%= t('helpers.titles.public_searches', default: 'Public Searches') %></h4>
-    <ul>
-      <% @public_searches.each do |search| %>
-        <li>
-          <%= link_to "#{search.name.presence || 'Search'} (#{search.created_at.strftime('%Y-%m-%d')})", public_search_documents_path(token: search.id), target: "_blank" %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
-<%= will_paginate(@movies, :params => { :type => params[:type], :name => params[:name], :start_at => params[:start_at], :end_at => params[:end_at], :status => params[:status] } ) %>

@@ -18,6 +18,7 @@ class Company < ApplicationRecord
   has_many :payments_documents, :foreign_key => 'domain'
   has_many :service_payments, :foreign_key => 'domain'
   has_many :payment_types, :foreign_key => 'domain'
+  has_many :public_searchs, :foreign_key => 'domain'
   
   has_attached_file :logo,
 #      :storage => :dropbox,

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_06_10_190348) do
+ActiveRecord::Schema[7.0].define(version: 2025_06_30_162724) do
   create_table "accounts", id: false, charset: "utf8mb3", force: :cascade do |t|
     t.string "id", limit: 36
     t.string "version"
@@ -265,6 +265,21 @@ ActiveRecord::Schema[7.0].define(version: 2025_06_10_190348) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "custom_tax", precision: 10
+  end
+
+  create_table "public_searches", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "id", limit: 36
+    t.string "version"
+    t.string "domain"
+    t.date "start_at"
+    t.date "end_at"
+    t.string "name"
+    t.string "status"
+    t.string "document_type"
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_public_searches_on_token"
   end
 
   create_table "roles", charset: "utf8mb3", force: :cascade do |t|

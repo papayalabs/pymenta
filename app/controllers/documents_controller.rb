@@ -1,24 +1,26 @@
 class DocumentsController < ApplicationController
+  layout "public_search", only: [:public_search]
   # GET /documents
   # GET /documents.json
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:public_seach,:document_report,:documents_report]
   def search
    @start_at = params[:start_at].blank? ? DateTime.parse("01/01/1901") : DateTime.parse(params[:start_at])
    @end_at = params[:end_at].blank? ? DateTime.parse("01/01/2901") : DateTime.parse(params[:end_at])
    @name = params[:name]
    @status = params[:status]
-   @type = params[:type]
+   @document_type = params[:type]
+
    if @status.blank?
-     if @type.blank?
+     if @document_type.blank?
       @documents = Document.joins(:account).where("documents.domain = ? AND name like ? AND date >= ? AND date <= ? ", current_user.domain,"%#{@name}%","#{@start_at}","#{@end_at}").paginate(:page => params[:page], :per_page => 10).order('date DESC')
      else
-      @documents = Document.joins(:account).where("documents.domain = ? AND name like ? AND documents.type = ? AND date >= ? AND date <= ? ", current_user.domain,"%#{@name}%","#{@type}","#{@start_at}","#{@end_at}").paginate(:page => params[:page], :per_page => 10).order('date DESC')
+      @documents = Document.joins(:account).where("documents.domain = ? AND name like ? AND documents.type = ? AND date >= ? AND date <= ? ", current_user.domain,"%#{@name}%","#{@document_type}","#{@start_at}","#{@end_at}").paginate(:page => params[:page], :per_page => 10).order('date DESC')
      end
    else
-     if @type.blank?
+     if @document_type.blank?
       @documents = Document.joins(:account).joins("LEFT OUTER JOIN payments_documents ON payments_documents.id = documents.payments_document_id").where("documents.domain = ? AND accounts.name like ? AND documents.date >= ? AND documents.date <= ? AND (payments_documents.status = ? OR (documents.status = ? AND payments_documents.id IS NULL))", current_user.domain,"%#{@name}%","#{@start_at}","#{@end_at}","#{@status}","#{@status}").paginate(:page => params[:page], :per_page => 10).order('date DESC')
      else
-      @documents = Document.joins(:account).joins("LEFT OUTER JOIN payments_documents ON payments_documents.id = documents.payments_document_id").where("documents.domain = ? AND accounts.name like ? AND documents.type = ? AND documents.date >= ? AND documents.date <= ? AND (payments_documents.status = ? OR (documents.status = ? AND payments_documents.id IS NULL))", current_user.domain,"%#{@name}%","#{@type}","#{@start_at}","#{@end_at}","#{@status}","#{@status}").paginate(:page => params[:page], :per_page => 10).order('date DESC')
+      @documents = Document.joins(:account).joins("LEFT OUTER JOIN payments_documents ON payments_documents.id = documents.payments_document_id").where("documents.domain = ? AND accounts.name like ? AND documents.type = ? AND documents.date >= ? AND documents.date <= ? AND (payments_documents.status = ? OR (documents.status = ? AND payments_documents.id IS NULL))", current_user.domain,"%#{@name}%","#{@document_type}","#{@start_at}","#{@end_at}","#{@status}","#{@status}").paginate(:page => params[:page], :per_page => 10).order('date DESC')
      end
    end      
     render :index
@@ -26,6 +28,7 @@ class DocumentsController < ApplicationController
 
  
   def index
+    @public_searches = PublicSearch.where(domain: current_user.domain).order(created_at: :desc).limit(10)
     @documents = current_user.company.documents.paginate(:page => params[:page], :per_page => 10).order('date DESC')
 
     respond_to do |format|
@@ -192,7 +195,11 @@ class DocumentsController < ApplicationController
  
   def documents_report
     #raise params.inspect
-    @user = current_user
+    if current_user != nil
+      @user = current_user
+    elsif params[:company].present?
+      @user = Company.find(params[:company]).users.first
+    end
     @start_at = params[:start_at].blank? ? DateTime.parse("01/01/1901") : DateTime.parse(params[:start_at])
     @end_at = params[:end_at].blank? ? DateTime.parse("01/01/2901") : DateTime.parse(params[:end_at])
     @name = params[:name]
@@ -200,15 +207,15 @@ class DocumentsController < ApplicationController
     @type = params[:type]
     if @status.blank?
      if @type.blank?
-      @documents = Document.joins(:account).where("documents.domain = ? AND name like ? AND date >= ? AND date <= ? ", current_user.domain,"%#{@name}%","#{@start_at}","#{@end_at}")
+      @documents = Document.joins(:account).where("documents.domain = ? AND name like ? AND date >= ? AND date <= ? ", @user.domain,"%#{@name}%","#{@start_at}","#{@end_at}")
      else
-      @documents = Document.joins(:account).where("documents.domain = ? AND name like ? AND documents.type = ? AND date >= ? AND date <= ? ", current_user.domain,"%#{@name}%","#{@type}","#{@start_at}","#{@end_at}")
+      @documents = Document.joins(:account).where("documents.domain = ? AND name like ? AND documents.type = ? AND date >= ? AND date <= ? ", @user.domain,"%#{@name}%","#{@type}","#{@start_at}","#{@end_at}")
      end
     else
      if @type.blank?
-      @documents = Document.joins(:account).joins("LEFT OUTER JOIN payments_documents ON payments_documents.id = documents.payments_document_id").where("documents.domain = ? AND accounts.name like ? AND documents.date >= ? AND documents.date <= ? AND (payments_documents.status = ? OR (documents.status = ? AND payments_documents.id IS NULL))", current_user.domain,"%#{@name}%","#{@start_at}","#{@end_at}","#{@status}","#{@status}")
+      @documents = Document.joins(:account).joins("LEFT OUTER JOIN payments_documents ON payments_documents.id = documents.payments_document_id").where("documents.domain = ? AND accounts.name like ? AND documents.date >= ? AND documents.date <= ? AND (payments_documents.status = ? OR (documents.status = ? AND payments_documents.id IS NULL))", @user.domain,"%#{@name}%","#{@start_at}","#{@end_at}","#{@status}","#{@status}")
      else
-      @documents = Document.joins(:account).joins("LEFT OUTER JOIN payments_documents ON payments_documents.id = documents.payments_document_id").where("documents.domain = ? AND accounts.name like ? AND documents.type = ? AND documents.date >= ? AND documents.date <= ? AND (payments_documents.status = ? OR (documents.status = ? AND payments_documents.id IS NULL))", current_user.domain,"%#{@name}%","#{@type}","#{@start_at}","#{@end_at}","#{@status}","#{@status}")
+      @documents = Document.joins(:account).joins("LEFT OUTER JOIN payments_documents ON payments_documents.id = documents.payments_document_id").where("documents.domain = ? AND accounts.name like ? AND documents.type = ? AND documents.date >= ? AND documents.date <= ? AND (payments_documents.status = ? OR (documents.status = ? AND payments_documents.id IS NULL))", @user.domain,"%#{@name}%","#{@type}","#{@start_at}","#{@end_at}","#{@status}","#{@status}")
      end
     end       
     pdf = DocumentsReport.new(@documents, @user, @start_at, @end_at)
@@ -217,7 +224,11 @@ class DocumentsController < ApplicationController
   
   def document_report
       #raise params.inspect
-      user = current_user
+      if current_user != nil
+        user = current_user
+      elsif params[:company].present?
+        user = Company.find(params[:company]).users.first
+      end
       @document = Document.find(params[:format])
       pdf = DocumentReport.new(@document, user)
       send_data pdf.render, filename:'document_report.pdf',type: 'application/pdf', disposition: 'inline'
@@ -230,6 +241,54 @@ class DocumentsController < ApplicationController
       pdf = Object.const_get("Report"+@document.document_type_id.to_s.tr('-', '')).new(@document, user)
       send_data pdf.render, filename:'personalize_report.pdf',type: 'application/pdf', disposition: 'inline'
    end 
+   
+   # POST /documents/save_public_search
+  skip_before_action :authenticate_user!, only: [:public_search]
+
+  def save_public_search
+    public_search = PublicSearch.create(
+      domain: current_user.domain,
+      start_at: params[:start_at],
+      end_at: params[:end_at],
+      name: params[:name],
+      status: params[:status],
+      document_type: params[:document_type]
+    )
+    if public_search.persisted?
+      redirect_to documents_path, notice: t('helpers.links.public_link_created', default: 'Public link created!')
+    else
+      redirect_to documents_path, alert: t('helpers.links.public_link_error', default: 'Could not create public link.')
+    end
+  end
+
+  # GET /documents/public_search/:token
+  def public_search
+    @public_search = PublicSearch.find_by(id: params[:token])
+    if @public_search.nil?
+      render plain: 'Invalid or expired link', status: :not_found and return
+    end
+    @start_at = @public_search.start_at || DateTime.parse("01/01/1901")
+    @end_at = @public_search.end_at || DateTime.parse("01/01/2901")
+    @name = @public_search.name
+    @status = @public_search.status
+    @document_type = @public_search.document_type
+    @documents = Document.joins(:account)
+    if @status.blank?
+      if @document_type.blank?
+        @documents = @documents.where("name like ? AND date >= ? AND date <= ? ", "%#{@name}%", "#{@start_at}", "#{@end_at}")
+      else
+        @documents = @documents.where("name like ? AND documents.type = ? AND date >= ? AND date <= ? ", "%#{@name}%", "#{@document_type}", "#{@start_at}", "#{@end_at}")
+      end
+    else
+      if @document_type.blank?
+        @documents = @documents.joins("LEFT OUTER JOIN payments_documents ON payments_documents.id = documents.payments_document_id").where("accounts.name like ? AND documents.date >= ? AND documents.date <= ? AND (payments_documents.status = ? OR (documents.status = ? AND payments_documents.id IS NULL))", "%#{@name}%", "#{@start_at}", "#{@end_at}", "#{@status}", "#{@status}")
+      else
+        @documents = @documents.joins("LEFT OUTER JOIN payments_documents ON payments_documents.id = documents.payments_document_id").where("accounts.name like ? AND documents.type = ? AND documents.date >= ? AND documents.date <= ? AND (payments_documents.status = ? OR (documents.status = ? AND payments_documents.id IS NULL))", "%#{@name}%", "#{@document_type}", "#{@start_at}", "#{@end_at}", "#{@status}", "#{@status}")
+      end
+    end
+    @documents = @documents.order('date DESC')
+    render :public_search
+  end
    
    private
      # Use callbacks to share common setup or constraints between actions.
