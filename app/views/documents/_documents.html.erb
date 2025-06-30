@@ -61,7 +61,7 @@
 <%= button_to t('.public_print', default: t('helpers.links.public_print', default: 'Public Print')),
               save_public_search_documents_path,
               method: :post,
-              params: { start_at: @start_at, end_at: @end_at, name: @name, status: @status, document_type: @type },
+              params: { start_at: @start_at, end_at: @end_at, name: @name, status: @status, document_type: @document_type },
               class: 'btn btn-info',
               form: { data: { turbo: false } } %>
 
