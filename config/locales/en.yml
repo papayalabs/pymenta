@@ -119,3 +119,9 @@ en:
   stocks:
     index:
       title: "Stocks"
+  helpers:
+    links:
+      public_print: "Public Print"
+    titles:
+      public_searches: "Public Searches"
+      public_search_results: "Public Search Results"

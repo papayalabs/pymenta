@@ -129,3 +129,9 @@ es:
   stocks:
     index:
       title: "Inventarios"
+  helpers:
+    links:
+      public_print: "Impresión Pública"
+    titles:
+      public_searches: "Búsquedas Públicas"
+      public_search_results: "Resultados de Búsqueda Pública"
