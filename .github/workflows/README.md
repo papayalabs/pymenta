@@ -12,11 +12,8 @@ To use this workflow, you need to configure the following secrets in your GitHub
 
 1. `SSH_PRIVATE_KEY`: The private SSH key for connecting to your staging server
 2. `KNOWN_HOSTS`: The SSH known_hosts content for your staging server
-3. `SITES_YML`: Content of your config/sites.yml file
-4. `DATABASE_YML`: Content of your config/database.yml file
-5. `SECRETS_YML`: Content of your config/secrets.yml file
-6. `AWS_YML`: Content of your config/aws.yml file
-7. `UNICORN_RB`: Content of your config/unicorn.rb file
+3. `DATABASE_YML`: Content of your config/database.yml file
+4. `SECRETS_YML`: Content of your config/secrets.yml file
 
 ### How to Set Up GitHub Secrets
 
