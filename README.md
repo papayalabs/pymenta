@@ -1,5 +1,5 @@
 Pymenta Rails Open Source Project
-===========================================================
+============================================================
 
 Pymenta is a very simple Rails Cloud ERP System created for small companies to create, manage and print documents ( invoices, notes, quotations, credits, etc). 
 You can manage warehouses, providers, clients, products, stock and print statistic reports. 
