@@ -23,11 +23,11 @@ jobs:
         with:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
-          name: key.pem  # Use this specific name for the key file
+          name: pymenta.pem  # Use this specific name for the key file
           config: |
             Host *
               StrictHostKeyChecking no
-              IdentityFile ~/.ssh/key.pem
+              IdentityFile ~/.ssh/pymenta.pem
 
       - name: Setup deployment configuration
         env:
@@ -44,6 +44,6 @@ jobs:
           # Print SSH key location for debugging
           ls -la ~/.ssh/
           # Set permissions on SSH key
-          chmod 600 ~/.ssh/key.pem
+          chmod 600 ~/.ssh/pymenta.pem
           # Run deployment with SSH_KEY env var
-          DEPLOY_BRANCH=development SSH_KEY_PATH=~/.ssh/key.pem bundle exec cap staging deploy
+          DEPLOY_BRANCH=development SSH_KEY_PATH=~/.ssh/pymenta.pem bundle exec cap staging deploy
