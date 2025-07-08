@@ -1,0 +1,49 @@
+name: Deploy to Staging
+
+on:
+  push:
+    branches: [ development ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2.0' # Adjust to match your Ruby version
+          bundler-cache: true
+
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+          name: key.pem  # Use this specific name for the key file
+          config: |
+            Host *
+              StrictHostKeyChecking no
+              IdentityFile ~/.ssh/key.pem
+
+      - name: Setup deployment configuration
+        env:
+          SECRETS_YML: ${{ secrets.SECRETS_YML }}
+          DATABASE_YML: ${{ secrets.DATABASE_YML }}
+        run: |
+          mkdir -p config
+          echo "$SECRETS_YML" > config/secrets.yml
+          echo "$DATABASE_YML" > config/database.yml
+
+      - name: Deploy to staging
+        run: |
+          bundle install
+          # Print SSH key location for debugging
+          ls -la ~/.ssh/
+          # Set permissions on SSH key
+          chmod 600 ~/.ssh/key.pem
+          # Run deployment with SSH_KEY env var
+          DEPLOY_BRANCH=development SSH_KEY_PATH=~/.ssh/key.pem bundle exec cap staging deploy
